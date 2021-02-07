@@ -1,0 +1,27 @@
+<mat-toolbar class="toolbar mat-elevation-z6">
+
+    <mat-icon class="mr-2 mb-2 unselectable" >language</mat-icon>
+    <span class="mr-5 ml-2 unselectable web-title" >PLATFORMA</span>
+
+    <div class="underlined-item">
+      <a routerLink="/" routerLinkActive="active" mat-button class="link_btn toolbar-item"
+         [routerLinkActiveOptions]="{exact: true}"> STRONA GŁÓWNA</a>
+    </div>
+    <a routerLink="/courses" routerLinkActive="active" mat-button class="link_btn toolbar-item" >KURSY</a>
+    <a routerLink="/tasks" mat-button class="link_btn toolbar-item" >ZADANIA</a>
+    <a routerLink="/tasks" mat-button class="link_btn toolbar-item" >ARTYKUŁY</a>
+    <a routerLink="/tasks" mat-button class="link_btn toolbar-item" >POMOC</a>
+
+    <div class="spacer"></div>
+    <div *ngIf="isLoggedIn">
+        <button (click)="goToUserProfile()" mat-button class="link_btn toolbar-item">PROFIL</button>
+        <button (click)="logout()" mat-button class="link_btn toolbar-item">WYLOGUJ</button>
+    </div>
+    <div *ngIf="!isLoggedIn">
+      <a routerLink="/sign-up" mat-raised-button color="accent" class="signup"  >ZAREJESTRUJ SIĘ</a>
+      <a routerLink="/login" mat-button class="link_btn" >ZALOGUJ SIĘ</a>
+    </div>
+</mat-toolbar>
+
+
+

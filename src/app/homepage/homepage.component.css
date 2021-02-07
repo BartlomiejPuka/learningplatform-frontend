@@ -1,0 +1,26 @@
+
+
+.hero{
+  box-shadow: inset 0 0 490px black;
+  background-image: url("src/assets/pexels-lukas-574073.jpg") !important;
+  background-size: cover;
+  background-position: center center;
+
+}
+
+.title{
+  color: black !important;
+  font-size: 42px !important;
+  font-family: 'Titillium Web', sans-serif !important;
+}
+
+.subtitle{
+  color: black !important;
+  font-family: 'Titillium Web', sans-serif !important;
+}
+
+.container{
+  position: relative;
+  bottom: 180px;
+  right: 220px;
+}
