@@ -3,15 +3,15 @@
     <mat-card-title>{{ course.title }}</mat-card-title>
     <mat-card-subtitle>{{ course.subtitle }}</mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image style="{'img': }"
-       src="https://miro.medium.com/max/8642/1*iIXOmGDzrtTJmdwbn7cGMw.png"
-       alt="Photo of a Shiba Inu">
+  <div class="mat-card-image">
+    <img src="data:image/png;base64,{{ course.image }}" class="course-img" />
+  </div>
   <mat-card-content>
     <p>
       {{ course.description }}
     </p>
   </mat-card-content>
   <mat-card-actions align="end">
-    <button mat-button>Enroll</button>
+    <button mat-flat-button>Zapisz się</button>
   </mat-card-actions>
 </mat-card>

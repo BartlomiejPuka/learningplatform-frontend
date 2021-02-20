@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {SingupRequestPayload} from './signup-request.payload';
 import {AuthService} from '../shared/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-singup',
@@ -11,7 +12,7 @@ import {AuthService} from '../shared/auth.service';
 export class SingupComponent implements OnInit {
   signupRequestPayload: SingupRequestPayload;
   signupForm: FormGroup;
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
     this.signupRequestPayload = {
       username: '',
       email: '',
@@ -32,6 +33,7 @@ export class SingupComponent implements OnInit {
     this.authService.signup(this.signupRequestPayload)
       .subscribe(data => {
         console.log(data);
+        this.router.navigateByUrl('');
       });
   }
 }

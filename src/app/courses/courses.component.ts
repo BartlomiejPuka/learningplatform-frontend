@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CourseCardPayload} from './course-card/course.card.payload';
+import {CourseService} from './course.service';
+import {throwError} from 'rxjs';
 
 @Component({
   selector: 'app-courses',
@@ -8,17 +10,17 @@ import {CourseCardPayload} from './course-card/course.card.payload';
 })
 export class CoursesComponent implements OnInit {
 
-  courses: Array<CourseCardPayload> = [
-    new CourseCardPayload('Java I', 'test', 'test description'),
-    new CourseCardPayload('Java II', 'test', 'test description'),
-    new CourseCardPayload('Java III', 'test', 'test description'),
-    new CourseCardPayload('Java IV', 'test', 'test description'),
-  ];
+  courses: Array<CourseCardPayload>;
 
-  constructor() { }
+  constructor(private courseService: CourseService) { }
 
   ngOnInit(): void {
-    // http://localhost:8080/api/courses
+    this.courseService.getAllCourses().subscribe(data => {
+      console.log(data);
+      this.courses = data;
+    }, error => {
+      throwError(error);
+    });
   }
 
 }

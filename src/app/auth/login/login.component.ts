@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoginRequestPayload} from './login.request.payload';
 import {AuthService} from '../shared/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   isError: any;
   loginRequestPayload: LoginRequestPayload;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
     this.loginRequestPayload = {
       username: '',
       password: ''
@@ -31,6 +32,7 @@ export class LoginComponent implements OnInit {
     this.loginRequestPayload.password = this.loginForm.get('password').value;
     this.authService.login(this.loginRequestPayload).subscribe(data => {
       console.log('Login successful');
-    })
+      this.router.navigateByUrl('');
+    });
   }
 }
