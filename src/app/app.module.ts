@@ -15,7 +15,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { HomepageComponent } from './homepage/homepage.component';
 import { CoursesComponent } from './courses/courses.component';
-
+import {MatCard, MatCardModule} from '@angular/material/card';
+import { CourseCardComponent } from './courses/course-card/course-card.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CoursesComponent } from './courses/courses.component';
     SingupComponent,
     LoginComponent,
     HomepageComponent,
-    CoursesComponent
+    CoursesComponent,
+    CourseCardComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import { CoursesComponent } from './courses/courses.component';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

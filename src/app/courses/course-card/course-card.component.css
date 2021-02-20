@@ -1,0 +1,8 @@
+.course-card{
+  max-width: 400px;
+  margin: 12px;
+}
+
+img {
+  pointer-events: none;
+}

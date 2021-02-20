@@ -1,1 +1,5 @@
-<p>courses works!</p>
+<div class="container">
+  <div class="row justify-content-left" >
+      <app-course-card *ngFor="let course of courses" [course]="course"></app-course-card>
+  </div>
+</div>
