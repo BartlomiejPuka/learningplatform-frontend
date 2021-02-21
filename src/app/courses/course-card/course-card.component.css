@@ -35,5 +35,11 @@ img {
   pointer-events: none;
 }
 
+.enroll-button{
+  background-color: limegreen;
+}
 
 
+.enroll-label{
+  font-weight: bold;
+}

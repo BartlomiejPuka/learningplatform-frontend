@@ -4,7 +4,7 @@
     <mat-card-subtitle>{{ course.subtitle }}</mat-card-subtitle>
   </mat-card-header>
   <div class="mat-card-image">
-    <img src="data:image/png;base64,{{ course.image }}" class="course-img" />
+    <img src="data:image/png;base64,{{ course.image }}" class="course-img unselectable" />
   </div>
   <mat-card-content>
     <p>
@@ -12,6 +12,11 @@
     </p>
   </mat-card-content>
   <mat-card-actions align="end">
-    <button mat-flat-button>Zapisz się</button>
+    <div *ngIf="!course.userEnrolled; else loggedOut" >
+      <button mat-flat-button class="enroll-button">Zapisz się</button>
+    </div>
+    <ng-template #loggedOut>
+      <label class="enroll-label" >Jesteś już zapisany na ten kurs.</label>
+    </ng-template>
   </mat-card-actions>
 </mat-card>

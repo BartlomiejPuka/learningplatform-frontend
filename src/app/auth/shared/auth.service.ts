@@ -16,8 +16,6 @@ export class AuthService {
   loggedInChanged$ = this.loggedInChangedSource.asObservable();
   private usernameChangedSource = new Subject<string>();
   usernameChanged$ = this.usernameChangedSource.asObservable();
-  // @Output() loggedIn: EventEmitter<boolean> = new EventEmitter();
-  // @Output() username: EventEmitter<string> = new EventEmitter();
 
   constructor(private httpClient: HttpClient, private localStorage: LocalStorageService) { }
 
@@ -33,8 +31,6 @@ export class AuthService {
         this.localStorage.store('expiresAt', data.expiresAt);
         this.loggedInChangedSource.next(true);
         this.usernameChangedSource.next(data.username);
-        // this.username.emit(data.username);
-        // this.loggedIn.emit(true);
         console.log(data.username);
         return true;
     }));
