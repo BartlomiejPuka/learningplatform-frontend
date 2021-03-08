@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CourseCardPayload} from './course.card.payload';
+import {CourseService} from '../course.service';
 
 @Component({
   selector: 'app-course-card',
@@ -9,9 +10,15 @@ import {CourseCardPayload} from './course.card.payload';
 export class CourseCardComponent implements OnInit {
 
   @Input() course: CourseCardPayload;
-  constructor() { }
+  constructor(private courseService: CourseService) { }
 
   ngOnInit(): void {
   }
 
+  enrollCourse(id: number) {
+    console.log(`enrolling course of id = ${id}`);
+    this.courseService.enrollCourse(id).subscribe(data => {
+        console.log(data);
+      });
+  }
 }

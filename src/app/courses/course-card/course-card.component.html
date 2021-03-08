@@ -12,10 +12,10 @@
     </p>
   </mat-card-content>
   <mat-card-actions align="end">
-    <div *ngIf="!course.userEnrolled; else loggedOut" >
-      <button mat-flat-button class="enroll-button">Zapisz się</button>
+    <div *ngIf="!course.enrolled; else enrolledLabel" >
+      <button mat-flat-button class="enroll-button" (click)="enrollCourse(course.id)">Zapisz się</button>
     </div>
-    <ng-template #loggedOut>
+    <ng-template #enrolledLabel>
       <label class="enroll-label" >Jesteś już zapisany na ten kurs.</label>
     </ng-template>
   </mat-card-actions>
