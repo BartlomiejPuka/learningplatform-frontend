@@ -7,7 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { SingupComponent } from './auth/signup/singup.component';
 import { LoginComponent } from './auth/login/login.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {NgxWebstorageModule} from 'ngx-webstorage';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -17,6 +17,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { CoursesComponent } from './courses/courses.component';
 import {MatCard, MatCardModule} from '@angular/material/card';
 import { CourseCardComponent } from './courses/course-card/course-card.component';
+import {AppInterceptor} from './interceptors/AppInterceptor';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,13 @@ import { CourseCardComponent } from './courses/course-card/course-card.component
     MatIconModule,
     MatCardModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AppInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

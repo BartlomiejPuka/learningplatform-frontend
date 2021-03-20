@@ -1,5 +1,5 @@
 import {Injectable, Output} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {SingupRequestPayload} from '../signup/signup-request.payload';
 import {Observable, Subject} from 'rxjs';
 import {LoginRequestPayload} from '../login/login.request.payload';
@@ -7,6 +7,7 @@ import {LocalStorageService} from 'ngx-webstorage';
 import {map} from 'rxjs/operators';
 import {LoginResponsePayload} from '../login/login.response.payload';
 import {EventEmitter} from 'events';
+import {InterceptorSkipHeader} from '../../interceptors/AppInterceptor';
 
 @Injectable({
   providedIn: 'root'
@@ -16,15 +17,21 @@ export class AuthService {
   loggedInChanged$ = this.loggedInChangedSource.asObservable();
   private usernameChangedSource = new Subject<string>();
   usernameChanged$ = this.usernameChangedSource.asObservable();
-
+  loginApiRoute = 'http://localhost:8080/api/auth/login';
+  signupApiRoute = 'http://localhost:8080/api/auth/signup';
   constructor(private httpClient: HttpClient, private localStorage: LocalStorageService) { }
 
   signup(signupRequestPayload: SingupRequestPayload): Observable<any>{
-    return this.httpClient.post('http://localhost:8080/api/auth/signup', signupRequestPayload, {responseType: 'text'});
+    const headers = new HttpHeaders().set(InterceptorSkipHeader, '');
+    return this.httpClient.post(this.signupApiRoute, signupRequestPayload,
+      {responseType: 'text', headers});
   }
   login(loginRequestPayload: LoginRequestPayload): Observable<boolean>{
-    return this.httpClient.post<LoginResponsePayload>('http://localhost:8080/api/auth/login',
-      loginRequestPayload).pipe(map(data => {
+    const headers = new HttpHeaders().set(InterceptorSkipHeader, '');
+    return this.httpClient.post<LoginResponsePayload>(this.loginApiRoute,
+      loginRequestPayload, {
+        headers
+      }).pipe(map(data => {
         this.localStorage.store('authenticationToken', data.authenticationToken);
         this.localStorage.store('username', data.username);
         this.localStorage.store('refreshToken', data.refreshToken);

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CourseCardPayload} from './course.card.payload';
 import {CourseService} from '../course.service';
 
@@ -9,16 +9,20 @@ import {CourseService} from '../course.service';
 })
 export class CourseCardComponent implements OnInit {
 
+  @Output() refreshCourses: EventEmitter<any> = new EventEmitter();
   @Input() course: CourseCardPayload;
   constructor(private courseService: CourseService) { }
 
   ngOnInit(): void {
   }
-
-  enrollCourse(id: number) {
+  enrollCourse(id: number): void {
     console.log(`enrolling course of id = ${id}`);
-    this.courseService.enrollCourse(id).subscribe(data => {
-        console.log(data);
-      });
+    this.courseService.enrollCourse(id).subscribe((data) => {
+      console.log(data);
+    }, err => {
+      console.log(err);
+    }, () => {
+      this.refreshCourses.emit();
+    });
   }
 }
