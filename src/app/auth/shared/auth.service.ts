@@ -1,13 +1,13 @@
 import {Injectable, Output} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {SingupRequestPayload} from '../signup/signup-request.payload';
+import {SingupRequestPayload} from '../models/signup-request.payload';
 import {Observable, Subject} from 'rxjs';
-import {LoginRequestPayload} from '../login/login.request.payload';
+import {LoginRequestPayload} from '../models/login.request.payload';
 import {LocalStorageService} from 'ngx-webstorage';
 import {map} from 'rxjs/operators';
-import {LoginResponsePayload} from '../login/login.response.payload';
-import {EventEmitter} from 'events';
+import {LoginResponsePayload} from '../models/login.response.payload';
 import {InterceptorSkipHeader} from '../../interceptors/AppInterceptor';
+import {AuthStoreService} from './store/auth-store.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class AuthService {
   usernameChanged$ = this.usernameChangedSource.asObservable();
   loginApiRoute = 'http://localhost:8080/api/auth/login';
   signupApiRoute = 'http://localhost:8080/api/auth/signup';
-  constructor(private httpClient: HttpClient, private localStorage: LocalStorageService) { }
+  constructor(private httpClient: HttpClient, private authStoreService: AuthStoreService) { }
 
   signup(signupRequestPayload: SingupRequestPayload): Observable<any>{
     const headers = new HttpHeaders().set(InterceptorSkipHeader, '');
@@ -32,32 +32,23 @@ export class AuthService {
       loginRequestPayload, {
         headers
       }).pipe(map(data => {
-        this.localStorage.store('authenticationToken', data.authenticationToken);
-        this.localStorage.store('username', data.username);
-        this.localStorage.store('refreshToken', data.refreshToken);
-        this.localStorage.store('expiresAt', data.expiresAt);
+        this.authStoreService.store('authenticationToken', data.authenticationToken);
+        this.authStoreService.store('username', data.username);
+        this.authStoreService.store('refreshToken', data.refreshToken);
+        this.authStoreService.store('expiresAt', data.expiresAt);
         this.loggedInChangedSource.next(true);
         this.usernameChangedSource.next(data.username);
         console.log(data.username);
         return true;
     }));
   }
-  getJwtToken() {
-    return this.localStorage.retrieve('authenticationToken');
-  }
-  getUserName() {
-    return this.localStorage.retrieve('username');
-  }
-  getRefreshToken() {
-    return this.localStorage.retrieve('refreshToken');
-  }
   isLoggedIn(): boolean {
-    return this.getJwtToken() != null;
+    return this.authStoreService.getJwtToken() != null;
   }
-  logout(){
-    this.localStorage.clear('authenticationToken');
-    this.localStorage.clear('username');
-    this.localStorage.clear('refreshToken');
-    this.localStorage.clear('expiresAt');
+  logout(): void{
+    this.authStoreService.clear('authenticationToken');
+    this.authStoreService.clear('username');
+    this.authStoreService.clear('refreshToken');
+    this.authStoreService.clear('expiresAt');
   }
 }

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {CourseCardPayload} from './course.card.payload';
+import {CourseCardPayload} from '../models/course.card.payload';
 import {CourseService} from '../course.service';
 
 @Component({

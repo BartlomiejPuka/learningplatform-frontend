@@ -10,14 +10,15 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {NgxWebstorageModule} from 'ngx-webstorage';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
+
 import { HomepageComponent } from './homepage/homepage.component';
 import { CoursesComponent } from './courses/courses.component';
-import {MatCard, MatCardModule} from '@angular/material/card';
 import { CourseCardComponent } from './courses/course-card/course-card.component';
 import {AppInterceptor} from './interceptors/AppInterceptor';
+import { LessonsComponent } from './lessons/lessons.component';
+import { LessonCardComponent } from './lessons/lesson-card/lesson-card.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {MaterialModule} from './material-module/material.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import {AppInterceptor} from './interceptors/AppInterceptor';
     LoginComponent,
     HomepageComponent,
     CoursesComponent,
-    CourseCardComponent
+    CourseCardComponent,
+    LessonsComponent,
+    LessonCardComponent
   ],
   imports: [
     BrowserModule,
@@ -36,10 +39,8 @@ import {AppInterceptor} from './interceptors/AppInterceptor';
     HttpClientModule,
     NgxWebstorageModule.forRoot(),
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatCardModule
+    MaterialModule,
+    NgxPaginationModule,
   ],
   providers: [
     {

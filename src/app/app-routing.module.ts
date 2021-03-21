@@ -4,12 +4,14 @@ import {SingupComponent} from './auth/signup/singup.component';
 import {LoginComponent} from './auth/login/login.component';
 import {HomepageComponent} from './homepage/homepage.component';
 import {CoursesComponent} from './courses/courses.component';
+import {LessonsComponent} from './lessons/lessons.component';
 
 const routes: Routes = [
   {path: '', component: HomepageComponent, data: {animation: 0}},
   {path: 'courses', component: CoursesComponent, data: {animation: 1}},
   {path: 'sign-up', component: SingupComponent, data: {animation: 2}},
-  {path: 'login', component: LoginComponent, data: {animation: 3}}
+  {path: 'login', component: LoginComponent, data: {animation: 3}},
+  {path: 'lessons', component: LessonsComponent}
 ];
 
 @NgModule({

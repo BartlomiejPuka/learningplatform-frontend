@@ -1,20 +1,20 @@
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {AuthService} from '../auth/shared/auth.service';
+import {AuthStoreService} from '../auth/shared/store/auth-store.service';
 
 export const InterceptorSkipHeader = 'X-Skip-Interceptor';
 
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthService) {}
+  constructor(private authStoreService: AuthStoreService) {}
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (req.headers.has(InterceptorSkipHeader)) {
       const headers = req.headers.delete(InterceptorSkipHeader);
       return next.handle(req.clone({ headers }));
     }
     const clonedRequest = req.clone({
-      headers: req.headers.set('Authorization',  'Bearer ' + this.authService.getJwtToken())
+      headers: req.headers.set('Authorization',  'Bearer ' + this.authStoreService.getJwtToken())
     });
     return next.handle(clonedRequest);
   }

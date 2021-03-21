@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from '../auth/shared/auth.service';
 import {Router} from '@angular/router';
 import {Subscription} from 'rxjs';
+import {AuthStoreService} from '../auth/shared/store/auth-store.service';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isLoggedInSubscription: Subscription;
   usernameSubscription: Subscription;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private authStoreService: AuthStoreService, private router: Router) { }
 
   ngOnInit(): void {
     this.isLoggedInSubscription = this.authService.loggedInChanged$.subscribe(value => {
@@ -28,22 +29,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
         console.log(error);
     });
     this.isLoggedIn = this.authService.isLoggedIn();
-    this.username = this.authService.getUserName();
+    this.username = this.authStoreService.getUserName();
   }
   ngOnDestroy(): void{
     this.isLoggedInSubscription.unsubscribe();
     this.usernameSubscription.unsubscribe();
   }
-  setIsLoggedIn(value: boolean){
+  setIsLoggedIn(value: boolean): void{
     console.log('is logged in ' + value);
     this.isLoggedIn = value;
   }
-  setUsername(value: string){
+  setUsername(value: string): void{
     console.log('username ' + value);
     this.username = value;
   }
-  goToUserProfile() { }
-  logout() {
+  goToUserProfile(): void { }
+  logout(): void {
     this.authService.logout();
     this.isLoggedIn = false;
     this.router.navigateByUrl('');

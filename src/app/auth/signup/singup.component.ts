@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {SingupRequestPayload} from './signup-request.payload';
+import {SingupRequestPayload} from '../models/signup-request.payload';
 import {AuthService} from '../shared/auth.service';
 import {Router} from '@angular/router';
 

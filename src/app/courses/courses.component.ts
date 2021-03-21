@@ -1,5 +1,5 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {CourseCardPayload} from './course-card/course.card.payload';
+import {CourseCardPayload} from './models/course.card.payload';
 import {CourseService} from './course.service';
 import {BehaviorSubject, Observable, Subscription, throwError} from 'rxjs';
 
