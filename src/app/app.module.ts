@@ -19,6 +19,7 @@ import { LessonsComponent } from './lessons/lessons.component';
 import { LessonCardComponent } from './lessons/lesson-card/lesson-card.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {MaterialModule} from './material-module/material.module';
+import { SphereEngineComponent } from './sphere-engine/sphere-engine.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {MaterialModule} from './material-module/material.module';
     CoursesComponent,
     CourseCardComponent,
     LessonsComponent,
-    LessonCardComponent
+    LessonCardComponent,
+    SphereEngineComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,24 @@
+
+
+<div class="container lesson-cards-container">
+  <mat-form-field class="search-form" appearance="outline" (keydown.enter)="submitSearch(searchInput.value)">
+    <mat-label>Wyszukaj</mat-label>
+    <input #searchInput matInput type="search">
+    <mat-icon matSuffix class="unselectable">search</mat-icon>
+  </mat-form-field>
+
+  <div class="row justify-content-left" >
+      <div *ngFor="let lesson of lessons | paginate: {
+        currentPage: currentPage,
+        totalItems: totalItems,
+        itemsPerPage: itemsPerPage}" >
+        <app-lesson-card [lesson]="lesson" ></app-lesson-card>
+      </div>
+  </div>
+  <pagination-controls [directionLinks]="false" class="lessons-pagination" (pageChange)="currentPage = $event" ></pagination-controls>
+</div>
+
+
+
+
+
