@@ -1,3 +1,6 @@
-<div class="container se-container center"  >
-  <div class="se-widget" data-widget="tD2Ln2MoPz" data-id="test-id" ></div>
+<div class="container se-container"  >
+    <button (click)="loadWidget()" >load</button>
+    <div class="se-widget" [attr.data-widget]="dataWidget" [attr.data-id]="dataId" ></div>
 </div>
+
+
