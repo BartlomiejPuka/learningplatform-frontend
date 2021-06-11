@@ -1,0 +1,36 @@
+
+.course-search-bar-field{
+  width: 780px;
+  color: white;
+  margin-top: 20px;
+
+}
+
+.course-search-bar-field .mat-input-element {
+  color: white;
+  /* add input text color here */
+}
+
+.course-search-bar-field .mat-input-element::placeholder {
+  color: white;
+  /* add placeholder css here */
+}
+
+::ng-deep .course-search-bar-autocomplete{
+  background-color: #3e3e3e !important;;
+  color: white !important;
+  overflow: hidden !important;
+
+  min-width: 80vw;
+  max-height: 80vh !important;
+}
+
+::ng-deep .course-search-bar-option{
+  color: white !important;
+  font-size: 20px;
+}
+
+:host ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: transparent!important;
+  border-bottom: 1px solid white;
+}

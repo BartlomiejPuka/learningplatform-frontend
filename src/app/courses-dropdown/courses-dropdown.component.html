@@ -1,0 +1,40 @@
+<button mat-button [matMenuTriggerFor]="menu" class="courses-button" #matMenu="matMenuTrigger"
+        (onMenuOpen)="onMenuOpenAction()"
+>
+  KURSY
+  <mat-icon [hidden]="matMenu.menuOpen" >arrow_drop_down</mat-icon>
+  <mat-icon [hidden]="!matMenu.menuOpen" >arrow_drop_up</mat-icon>
+</button>
+
+<mat-menu #menu="matMenu" class="courses-dropdown" >
+  <div class="container">
+    <div class="row courses-dropdown-row">
+      <div class="col courses-categories-col">
+        <div class="courses-dropdown-headers">
+          <div class="categories-header">Kategorie kursów</div>
+          <hr class="solid">
+        </div>
+        <div class="course-categories-div">
+          <ul class="course-categories-ul"
+              *ngFor="let key of courseKeys">
+            <li (mouseenter)="onCourseMouseEnter(key)"> <a>{{ key }}</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col courses-col">
+        <div class="courses-dropdown-headers">
+          <div class="course-header">Kursy</div>
+          <hr class="solid">
+        </div>
+        <div class="course-categories-div">
+          <ul class="course-categories-ul"
+              *ngFor="let course of courses">
+            <li><a>{{ course.title }}</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</mat-menu>

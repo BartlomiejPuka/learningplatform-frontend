@@ -1,0 +1,99 @@
+
+
+.courses-button{
+  font-size: 18px;
+  min-height: 70px;
+}
+
+.courses-button:hover{
+  color: limegreen;
+}
+
+
+::ng-deep .courses-dropdown {
+  margin-top: 52px;
+
+  max-width: none !important;
+  max-height: none !important;
+  min-width: 900px !important;
+
+  font-size: 22px;
+  color: lightgrey;
+  background: transparent;
+  box-shadow: none;
+}
+
+::ng-deep .courses-dropdown .container{
+  padding: 0;
+  margin: 0;
+  overflow:hidden;
+}
+
+.courses-dropdown-row{
+  height: 650px;
+}
+
+.courses-categories-col{
+  margin: 0;
+  padding: 0;
+  background-color: #2e2e2e;
+}
+
+.courses-col{
+  margin: 0;
+  padding: 0;
+  background-color: #3e3e3e;
+}
+
+.course-categories-div{
+  margin-top: 32px;
+}
+
+.course-categories-ul{
+  padding: 0;
+  margin: 0;
+}
+
+.course-categories-ul li{
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.course-categories-ul li a {
+  padding-left: 10%;
+  width: 100%;
+  height: 100%;
+  /*border: 1px solid red;*/
+  display:flex;
+  align-items: center;
+
+}
+
+.course-categories-ul li:hover, .course-categories-ul li:focus {
+  color:white;
+  background-color: #3e3e3e;
+}
+
+.courses-dropdown-headers{
+  margin-top: 5%;
+  margin-left: 10%;
+}
+
+hr.solid{
+  border-top: 0.05em solid #bbb;
+  width: 225px;
+}
+
+.courses-button:focus{
+  outline: none;
+}
+
+.categories-header{
+  font-weight: bold;
+}
+
+.course-header{
+  font-weight: bold;
+}

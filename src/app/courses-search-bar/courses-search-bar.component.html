@@ -1,0 +1,18 @@
+<mat-form-field class="course-search-bar-field" appearance="outline">
+  <mat-label>Wyszukaj kurs</mat-label>
+  <input type="text"
+         placeholder="Jakiego kursu szukasz?"
+         aria-label="Number"
+         matInput #searchInput
+         [formControl]="myControl"
+         [matAutocomplete]="auto"
+         (input)="onInputChanged(searchInput.value)"
+  >
+  <mat-icon matSuffix class="unselectable">search</mat-icon>
+  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" class="course-search-bar-autocomplete">
+    <mat-option *ngFor="let course of filteredCourses" class="course-search-bar-option">
+      {{  course.title  }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+
