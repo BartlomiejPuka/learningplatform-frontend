@@ -20,6 +20,15 @@ import { LessonCardComponent } from './lessons/lesson-card/lesson-card.component
 import {NgxPaginationModule} from 'ngx-pagination';
 import {MaterialModule} from './material-module/material.module';
 import { SphereEngineComponent } from './sphere-engine/sphere-engine.component';
+import { CartComponent } from './cart/cart.component';
+import { ProfileComponent } from './profile/profile.component';
+import { CoursesDropdownComponent } from './courses-dropdown/courses-dropdown.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { CoursesSearchBarComponent } from './courses-search-bar/courses-search-bar.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
+import { Constants } from './backend-api/constants';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +41,11 @@ import { SphereEngineComponent } from './sphere-engine/sphere-engine.component';
     CourseCardComponent,
     LessonsComponent,
     LessonCardComponent,
-    SphereEngineComponent
+    SphereEngineComponent,
+    CartComponent,
+    ProfileComponent,
+    CoursesDropdownComponent,
+    CoursesSearchBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,13 +56,15 @@ import { SphereEngineComponent } from './sphere-engine/sphere-engine.component';
     BrowserAnimationsModule,
     MaterialModule,
     NgxPaginationModule,
+    MatMenuModule,
+    MatAutocompleteModule,
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AppInterceptor,
       multi: true,
-    }
+    }, Constants
   ],
   bootstrap: [AppComponent]
 })

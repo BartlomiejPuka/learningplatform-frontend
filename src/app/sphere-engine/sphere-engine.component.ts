@@ -20,9 +20,25 @@ export class SphereEngineComponent implements OnDestroy, AfterViewInit {
   }
   ngAfterViewInit(): void {
     SeUtilFunctions.getSeWidget(this.dataId);
+    this.seObj.subscribe('beforeSendSubmission', this.beforeSendSubmissionCallback);
+    this.seObj.subscribe('afterSendSubmission', this.afterSendSubmissionCallback);
+    this.seObj.subscribe('checkStatus', this.checkSubmissionStatus);
   }
   ngOnDestroy(): void {
     SeUtilFunctions.dropSeWidget(this.dataId);
+  }
+  beforeSendSubmissionCallback(data: any): boolean {
+    console.log('before send submission callback');
+    console.log(data);
+    return true;
+  }
+  afterSendSubmissionCallback(data: any): void {
+    console.log('after send submission callback');
+    console.log(data);
+  }
+  checkSubmissionStatus(data: any): void {
+    console.log('check submission callback');
+    console.log(data);
   }
   // ngOnInit(): void {
   //   const se = window["SE"];
