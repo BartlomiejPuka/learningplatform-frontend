@@ -13,8 +13,9 @@
   align-items: center;
 
   user-select: none;
-  background-image: url("../../assets/cart-image.jpg");
-  background-size: 1200px;
+  background-size: cover;
+  background-repeat:   no-repeat;
+  background-position: center center;
 }
 
 .cart-content{
