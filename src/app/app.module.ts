@@ -28,6 +28,7 @@ import { CoursesSearchBarComponent } from './courses-search-bar/courses-search-b
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 import { Constants } from './backend-api/constants';
+import { CourseProductsComponent } from './course-products/course-products.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { Constants } from './backend-api/constants';
     ProfileComponent,
     CoursesDropdownComponent,
     CoursesSearchBarComponent,
+    CourseProductsComponent,
   ],
   imports: [
     BrowserModule,

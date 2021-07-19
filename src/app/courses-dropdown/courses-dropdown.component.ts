@@ -6,6 +6,8 @@ import {map} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import {Constants} from '../backend-api/constants';
 import {Observable} from 'rxjs';
+import {CourseCategoryPayload} from '../shared/course-category-payload';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-courses-dropdown',
@@ -15,11 +17,12 @@ import {Observable} from 'rxjs';
 export class CoursesDropdownComponent implements OnInit {
   isMenuOpen: boolean;
   coursesMap: Map<string, Array<CoursePayload>>;
-  courseKeys: Array<string>;
+  courseKeys: Array<CourseCategoryPayload>;
   courses: Array<CoursePayload>;
   constructor(
     private apiHttpService: ApiHttpService,
     private apiEndpointService: ApiEndpointsService,
+    private router: Router
   )  {
     this.coursesMap = new Map<string, Array<CoursePayload>>();
     this.courseKeys = [];
@@ -32,13 +35,29 @@ export class CoursesDropdownComponent implements OnInit {
     this.courses = this.coursesMap[course];
   }
   onMenuOpenAction(): void {
+    this.getCategories().subscribe(data => {
+      this.courseKeys = data;
+    });
     this.getCategorizedCourses().subscribe(data => {
       this.coursesMap = data;
       console.log(this.coursesMap);
-      this.courseKeys = Array.from(Object.keys(this.coursesMap));
     });
   }
   getCategorizedCourses(): Observable<Map<string, Array<CoursePayload>>> {
       return this.apiHttpService.get<Map<string, Array<CoursePayload>>>(this.apiEndpointService.getCategorizedCoursesEndpoint());
+  }
+  getCourses(): Observable<Array<CoursePayload>> {
+    return this.apiHttpService.get<Array<CoursePayload>>(this.apiEndpointService.getCoursesEndpoint());
+  }
+  getCategories(): Observable<Array<CourseCategoryPayload>> {
+    return this.apiHttpService.get<Array<CourseCategoryPayload>>(this.apiEndpointService.getCategories());
+  }
+  goToCourseProducts(courseCategoryPayload: CourseCategoryPayload): void {
+    // tslint:disable-next-line:only-arrow-functions
+    this.router.routeReuseStrategy.shouldReuseRoute = function(): boolean {
+      return false;
+    };
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(['course-products/category/', courseCategoryPayload.id]);
   }
 }

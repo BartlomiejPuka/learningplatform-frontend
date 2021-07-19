@@ -16,8 +16,10 @@
         </div>
         <div class="course-categories-div">
           <ul class="course-categories-ul"
-              *ngFor="let key of courseKeys">
-            <li (mouseenter)="onCourseMouseEnter(key)"> <a>{{ key }}</a></li>
+              *ngFor="let courseCategoryPayload of courseKeys">
+            <li (mouseenter)="onCourseMouseEnter(courseCategoryPayload.category)"
+                (click)="goToCourseProducts(courseCategoryPayload)"
+            > <a>{{ courseCategoryPayload.category }}</a></li>
           </ul>
         </div>
       </div>

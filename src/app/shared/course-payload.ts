@@ -1,3 +1,5 @@
+import {CourseCategoryPayload} from './course-category-payload';
+
 export class CoursePayload {
   constructor(
     public id: number,
@@ -5,12 +7,12 @@ export class CoursePayload {
     public author: string,
     public description: string,
     public price: number,
-    public category: string){
+    public courseCategory: CourseCategoryPayload){
     this.id = id;
     this.title = title;
     this.author = author;
     this.description = description;
     this.price = price;
-    this.category = category;
+    this.courseCategory = courseCategory;
   }
 }

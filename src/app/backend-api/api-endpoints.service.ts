@@ -58,6 +58,13 @@ export class ApiEndpointsService {
   public getCategorizedCoursesEndpoint(): string {
     return this.createUrl('courses/categorized');
   }
+  public getCategories(): string {
+    return this.createUrl('courses/categories');
+  }
+
+  public getCategoryById(id: number): string {
+    return this.createUrl(`courses/categories/${id}`);
+  }
   /* #endregion */
 
 }
