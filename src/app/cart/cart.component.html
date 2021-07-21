@@ -7,12 +7,26 @@
   <div class="container-fluid h-100 d-flex flex-column cart-container">
     <div class="row flex-grow-1 cart-row">
 
-      <div class="col-8 products-list">
-        Lista
+      <div class="col-8">
+        <label class="course-title">Kursy</label>
+         <div *ngFor="let cartItem of cartItems" class="cart-items-list">
+           <div class="cart-item-section">
+             <div class="cart-item-details">
+               <div class="cart-item-name">
+                 <label class="cart-item-title" >{{ cartItem.courseTitle }}</label>
+                 <label class="cart-item-author" >Autor:{{ cartItem.courseAuthor }}</label>
+               </div>
+               <label class="cart-item-price" >Cena:{{ cartItem.coursePrice }} BTC</label>
+             </div>
+             <div class="cart-item-actions">
+               <button mat-flat-button class="remove-cart-item-button" >Usuń</button>
+             </div>
+           </div>
+         </div>
       </div>
 
       <div class="col-4 cart-summary">
-        Podsumowanie
+        <label class="summary-title">Podsumowanie</label>
       </div>
     </div>
   </div>

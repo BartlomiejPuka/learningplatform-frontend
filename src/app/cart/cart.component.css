@@ -21,7 +21,6 @@
 .cart-content{
   margin: 0;
   background: #121119;
-  height: 60vh;
 }
 
 
@@ -35,19 +34,84 @@
 }
 
 .cart-row{
+  padding: 22px;
   height: auto;
-  border: 1px solid green;
+  border: 1px solid orangered;
 }
 
 
 .cart-summary{
-  display: table-row;
   padding: 16px;
-  border: 1px solid red;
+  height: 420px;
+  border: 1px solid red
 
 }
 
-.products-list{
+.cart-items-list{
+  margin-top: 22px;
+}
+
+.cart-item-section{
+  margin: 5px;
+  display:flex;
+}
+
+.cart-item-details {
+  width: 100%;
+  padding: 12px;
+  background-color: whitesmoke;
+  color: black;
+  display: flex;
+  flex-direction: row;
+  /*border: 1px solid red;*/
+
+}
+
+.cart-item-name{
+  display: flex;
+  flex-direction: column;
+  /*border: 1px solid red;*/
+
+}
+
+
+.cart-item-title {
+ font-weight: bold;
+  /*border: 1px solid red;*/
+}
+
+.cart-item-author {
+  font-style: italic;
+  color:gray;
+  font-size: 18px;
+  margin-bottom: 2px;
+  /*border: 1px solid red;*/
+}
+
+.cart-item-price {
+  margin-top: auto;
+  margin-left:auto;
+  margin-bottom: 2px;
+  /*border: 1px solid red;*/
+
+}
+
+.course-title, .summary-title {
+  font-size: 40px;
+  font-weight: bolder;
   padding: 16px;
-  border: 1px solid red;
+}
+
+.cart-item-actions{
+  margin-left: 20px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.remove-cart-item-button {
+  width: 92px;
+  height: 42px;
+  background-color: red;
+  color: white;
+  margin-left: 5px;
 }

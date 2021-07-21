@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {CartItemPayload} from '../shared/cart-item-payload';
+import {ApiHttpService} from '../backend-api/api-http.service';
+import {ApiEndpointsService} from '../backend-api/api-endpoints.service';
 
 @Component({
   selector: 'app-cart',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
-  constructor() { }
+  cartItems: Array<CartItemPayload>;
+  constructor(private apiHttpService: ApiHttpService,
+              private apiEndpointService: ApiEndpointsService) { }
 
   ngOnInit(): void {
+    this.fetchData();
+  }
+  fetchData(): void {
+    this.apiHttpService.get<Array<CartItemPayload>>(this.apiEndpointService.getAllCartItems()).subscribe((data) => {
+      this.cartItems = data;
+      console.log(data);
+    });
   }
 
 }
