@@ -9,6 +9,7 @@ import {SphereEngineComponent} from './sphere-engine/sphere-engine.component';
 import {CartComponent} from './cart/cart.component';
 import {ProfileComponent} from './profile/profile.component';
 import {CourseProductsComponent} from './course-products/course-products.component';
+import {MyCoursesComponent} from './my-courses/my-courses.component';
 
 const routes: Routes = [
   {path: '', component: HomepageComponent, data: {animation: 0}},
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent, data: {animation: 3}},
   {path: 'lessons', component: LessonsComponent},
   {path: 'sphere-engine', component: SphereEngineComponent},
-  {path: 'course-products/category/:id', component: CourseProductsComponent}
+  {path: 'course-products/category/:id', component: CourseProductsComponent},
+  {path: 'my-courses', component: MyCoursesComponent}
 ];
 
 @NgModule({

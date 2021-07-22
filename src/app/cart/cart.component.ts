@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CartItemPayload} from '../shared/cart-item-payload';
 import {ApiHttpService} from '../backend-api/api-http.service';
 import {ApiEndpointsService} from '../backend-api/api-endpoints.service';
+import {HttpResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-cart',
@@ -23,5 +24,20 @@ export class CartComponent implements OnInit {
       console.log(data);
     });
   }
-
+  removeCartItem(id: number) {
+    this.apiHttpService.post(this.apiEndpointService.removeCartItem(id), null, {observe: 'response'})
+      .subscribe(( response: HttpResponse<any>) => {
+      if (response.status === 200){
+        this.fetchData();
+      }
+    });
+  }
+  submitCart(): void {
+    this.apiHttpService.post(this.apiEndpointService.submitCart(), null, {observe: 'response'})
+      .subscribe((response: HttpResponse<any>) => {
+        if (response.status === 200){
+          this.fetchData();
+        }
+      });
+  }
 }

@@ -82,7 +82,7 @@ export class ApiEndpointsService {
   }
 
   public submitCart(): string {
-    return this.createUrl('/cart/submit');
+    return this.createUrl('cart/submit');
   }
   /* #endregion */
 }

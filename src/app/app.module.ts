@@ -30,6 +30,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { Constants } from './backend-api/constants';
 import { CourseProductsComponent } from './course-products/course-products.component';
 import { CourseProductCardComponent } from './course-products/course-product-card/course-product-card.component';
+import { MyCoursesComponent } from './my-courses/my-courses.component';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { CourseProductCardComponent } from './course-products/course-product-car
     CoursesSearchBarComponent,
     CourseProductsComponent,
     CourseProductCardComponent,
+    MyCoursesComponent,
   ],
   imports: [
     BrowserModule,
