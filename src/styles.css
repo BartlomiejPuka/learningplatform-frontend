@@ -22,3 +22,25 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   user-select: none;
 }
 
+
+#grayOutDiv
+{
+  background-color: #333;
+  opacity: 0.7;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.flash-message
+{
+  z-index: 10000;
+  text-align: center;
+  font-size: 30px;
+  width: 50vw;
+}
+

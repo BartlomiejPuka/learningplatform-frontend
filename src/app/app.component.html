@@ -1,5 +1,7 @@
 <app-header></app-header>
-
+<div class="alert-messages">
+  <flash-messages></flash-messages>
+</div>
 <div [@routeAnimations]="prepareRoute(outlet)" >
   <router-outlet #outlet="outlet"></router-outlet>
 </div>

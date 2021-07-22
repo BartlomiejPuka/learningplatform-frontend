@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {CartItemPayload} from '../shared/cart-item-payload';
 import {ApiHttpService} from '../backend-api/api-http.service';
 import {ApiEndpointsService} from '../backend-api/api-endpoints.service';
-import {HttpResponse} from '@angular/common/http';
+import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
+import {FlashMessagesService} from 'flash-messages-angular';
+import {ApiErrorPayload} from '../shared/api-error-payload';
 
 @Component({
   selector: 'app-cart',
@@ -13,7 +15,8 @@ export class CartComponent implements OnInit {
 
   cartItems: Array<CartItemPayload>;
   constructor(private apiHttpService: ApiHttpService,
-              private apiEndpointService: ApiEndpointsService) { }
+              private apiEndpointService: ApiEndpointsService,
+              private flashMessagesService: FlashMessagesService) { }
 
   ngOnInit(): void {
     this.fetchData();
@@ -29,6 +32,9 @@ export class CartComponent implements OnInit {
       .subscribe(( response: HttpResponse<any>) => {
       if (response.status === 200){
         this.fetchData();
+        this.flashMessagesService.show(`Usunięto kurs z koszyka.`, {cssClass: 'alert-warning', timeout: 2000});
+      } else {
+        this.flashMessagesService.show(`Operacja sie nie powiodła. Spróbuj ponownie.`, {cssClass: 'alert-danger', timeout: 2000});
       }
     });
   }
@@ -37,7 +43,13 @@ export class CartComponent implements OnInit {
       .subscribe((response: HttpResponse<any>) => {
         if (response.status === 200){
           this.fetchData();
+          this.flashMessagesService.show('Gratulacje!' + '<br/><br/>'  + 'Udalo ci sie dokonac zakupu.', {cssClass: 'alert-success', timeout: 2000});
+        } else {
+          this.flashMessagesService.show(`Operacja sie nie powiodła. Spróbuj ponownie.`, {cssClass: 'alert-danger', timeout: 2000});
         }
-      });
+      }, (errResponse: HttpErrorResponse) => {
+        console.log(errResponse);
+        this.flashMessagesService.show(errResponse.error.errors, {cssClass: 'alert-danger', timeout: 2000});
+    });
   }
 }
