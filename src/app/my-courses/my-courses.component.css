@@ -1,0 +1,17 @@
+
+
+
+.my-courses-container{
+  height: 100vh;
+}
+
+.my-courses-title{
+  height: 190px;
+  font-size: 65px;
+  font-weight: bold;
+  color: #f8f9fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}

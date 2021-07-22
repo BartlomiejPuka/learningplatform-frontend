@@ -1,0 +1,36 @@
+<mat-card class="course-product-card">
+  <mat-card-header>
+    <mat-card-title class="course-product-title">{{ courseProductPayload.title }}</mat-card-title>
+    <mat-card-subtitle class="course-product-subtitle">Autor: {{ courseProductPayload.author }}</mat-card-subtitle>
+  </mat-card-header>
+  <div class="mat-card-image">
+    <img src="{{ courseProductPayload.courseIconUrl }}" class="course-product-img unselectable" />
+  </div>
+  <mat-card-content>
+    <p>
+      {{ courseProductPayload.description }}
+    </p>
+    <p>
+      Ilość lekcji: {{ courseProductPayload.lessonsCount }}.
+    </p>
+    <p>
+      Ilość zadań: {{ courseProductPayload.tasksCount }}.
+    </p>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <div *ngIf="!courseProductPayload.inCart && !courseProductPayload.bought" >
+      <button mat-flat-button class="add-to-cart-button" (click)="addToCart(courseProductPayload)">
+        Dodaj do koszyka
+      </button>
+    </div>
+    <div *ngIf="courseProductPayload.bought">
+      <label>Posiadasz.</label>
+    </div>
+    <div *ngIf="courseProductPayload.inCart">
+      <label>Kurs znajduję się w koszyku.</label>
+    </div>
+  </mat-card-actions>
+  <mat-card-footer>
+    <label class="price-label">Cena: {{ courseProductPayload.price }} BTC</label>
+  </mat-card-footer>
+</mat-card>
