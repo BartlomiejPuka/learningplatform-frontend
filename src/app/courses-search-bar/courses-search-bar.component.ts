@@ -5,6 +5,7 @@ import {ApiHttpService} from '../backend-api/api-http.service';
 import {ApiEndpointsService} from '../backend-api/api-endpoints.service';
 import {QueryStringParameters} from '../backend-api/query-string-parameters';
 import {CoursePayload} from '../shared/course-payload';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-courses-search-bar',
@@ -16,7 +17,8 @@ export class CoursesSearchBarComponent implements OnInit {
   filteredCourses: Array<CoursePayload>;
   constructor(
     private apiHttpService: ApiHttpService,
-    private apiEndpointService: ApiEndpointsService
+    private apiEndpointService: ApiEndpointsService,
+    private router: Router,
   ) {
     this.filteredCourses = new Array<CoursePayload>();
   }
@@ -39,5 +41,13 @@ export class CoursesSearchBarComponent implements OnInit {
         qs.push('title', title);
       };
     return this.apiHttpService.get(this.apiEndpointService.getCoursesEndpoint(queryStringHandler));
+  }
+  goToCourseDetails(course: CoursePayload): void {
+    // tslint:disable-next-line:only-arrow-functions
+    this.router.routeReuseStrategy.shouldReuseRoute = function(): boolean {
+      return false;
+    };
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(['course/', course.urlSlug]);
   }
 }

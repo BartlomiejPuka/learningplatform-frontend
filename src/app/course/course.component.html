@@ -3,9 +3,20 @@
   <div class="course-title">
     Kurs {{ courseDetailsPayload.title }}
   </div>
-  <div class="row justify-content-left" >
-    <div class="course-img-container">
-      <img src="{{ courseDetailsPayload.iconUrl }}" class="course-img unselectable" />
+    <div class="course-details-container">
+      <div class="course-details-content">
+
+      </div>
+      <div class="course-info-offer">
+        <div class="course-img-container">
+          <img src="{{ courseDetailsPayload.iconUrl }}" class="course-img unselectable" />
+          <p>Kurs online</p>
+          <p>Gwarantowany zwrot pieniędzy</p>
+          <p>Dostępny na PC, smartfonie i tablecie</p>
+        </div>
+        <div class="course-info-actions">
+          <button mat-flat-button class="add-to-cart-item" >Dodaj do koszyka.</button>
+        </div>
+      </div>
     </div>
-  </div>
 </div>

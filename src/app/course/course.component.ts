@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {CourseDetailsPayload} from '../shared/course-details-payload';
 import {ApiHttpService} from '../backend-api/api-http.service';
 import {ApiEndpointsService} from '../backend-api/api-endpoints.service';
-import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-course',

@@ -11,7 +11,7 @@
   <mat-icon matSuffix class="unselectable">search</mat-icon>
   <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" class="course-search-bar-autocomplete">
     <mat-option *ngFor="let course of filteredCourses" class="course-search-bar-option">
-      {{  course.title  }}
+      <span (click)="goToCourseDetails(course)"><a class="course-link" > {{  course.title  }} </a></span>
     </mat-option>
   </mat-autocomplete>
 </mat-form-field>

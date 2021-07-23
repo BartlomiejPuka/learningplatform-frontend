@@ -61,4 +61,12 @@ export class CoursesDropdownComponent implements OnInit {
     console.log(courseCategoryPayload.urlSlug);
     this.router.navigate(['course-products/category/', courseCategoryPayload.urlSlug]);
   }
+  goToCourseDetails(course: CoursePayload): void {
+    // tslint:disable-next-line:only-arrow-functions
+    this.router.routeReuseStrategy.shouldReuseRoute = function(): boolean {
+      return false;
+    };
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(['course/', course.urlSlug]);
+  }
 }
