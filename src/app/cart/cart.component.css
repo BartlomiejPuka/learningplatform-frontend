@@ -36,11 +36,11 @@
 
 .cart-row{
   padding: 22px;
-  border: 1px solid orangered;
+  /*border: 1px solid orangered;*/
 }
 
 .cart-item-container{
-  border: 3px solid orange;
+  /*border: 3px solid orange;*/
   overflow-y: scroll;
   overflow-x: hidden;
   max-height: 520px;
@@ -137,18 +137,17 @@
 .cart-summary{
   padding: 6px;
   height: 600px;
-  border: 1px solid red
-
+  /*border: 1px solid red*/
 }
 
 .cart-summary-info{
   height: 320px;
-  border: 3px solid blue;
+  /*border: 3px solid blue;*/
 }
 
 .cart-summary-actions{
   height: 200px;
-  border: 3px solid red;
+  /*border: 3px solid red;*/
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;

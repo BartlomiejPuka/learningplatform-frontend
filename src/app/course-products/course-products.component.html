@@ -3,8 +3,6 @@
   <div class="course-category-row course-category-title">
     Kursy {{ courseCategoryPayload.category }}
   </div>
-  <div class="container alert-container">
-  </div>
   <div class="row justify-content-left" >
     <app-course-product-card
       *ngFor="let course of courseProductsPayloads" [courseProductPayload]="course"

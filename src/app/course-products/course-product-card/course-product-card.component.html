@@ -17,20 +17,25 @@
       Ilość zadań: {{ courseProductPayload.tasksCount }}.
     </p>
   </mat-card-content>
-  <mat-card-actions align="end">
+  <mat-card-actions class="course-product-actions">
+    <div>
+      <button mat-flat-button class="navigate-course-details-button" (click)="navigateToCourseDetails(courseProductPayload)">
+        Szczegóły
+      </button>
+    </div>
     <div *ngIf="!courseProductPayload.inCart && !courseProductPayload.bought" >
       <button mat-flat-button class="add-to-cart-button" (click)="addToCart(courseProductPayload)">
         Dodaj do koszyka
       </button>
     </div>
     <div *ngIf="courseProductPayload.bought">
-      <label>Posiadasz.</label>
+      <label class="course-product-info-label" >Posiadasz.</label>
     </div>
     <div *ngIf="courseProductPayload.inCart">
-      <label>Kurs znajduję się w koszyku.</label>
+      <label class="course-product-info-label" >Kurs znajduję się w koszyku.</label>
     </div>
   </mat-card-actions>
   <mat-card-footer>
-    <label class="price-label">Cena: {{ courseProductPayload.price }} BTC</label>
+    <label class="price-label">Cena: {{ courseProductPayload.price }} zł</label>
   </mat-card-footer>
 </mat-card>

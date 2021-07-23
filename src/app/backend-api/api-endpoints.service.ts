@@ -61,12 +61,8 @@ export class ApiEndpointsService {
   public getCategories(): string {
     return this.createUrl('courses/categories');
   }
-
-  public getCategoryById(id: number): string {
-    return this.createUrl(`courses/categories/${id}`);
-  }
-  public getCourseProductsByCategoryId(id: number): string {
-    return this.createUrl(`products/category/${id}`);
+  public getCourseDetailsByUrlSlug(slug: string): string {
+    return this.createUrl(`courses/${slug}/details`);
   }
 
   public getAllCartItems(): string {
@@ -83,6 +79,16 @@ export class ApiEndpointsService {
 
   public submitCart(): string {
     return this.createUrl('cart/submit');
+  }
+  public getCourseProductsByUrlSlug(urlSlug: string): string {
+    return this.createUrl(`products/category/${urlSlug}`);
+  }
+
+  public getCategoryByUrlSlug(urlSlug: string): string {
+    return this.createUrl(`courses/categories/${urlSlug}`);
+  }
+  public getCartItemsCount(): string {
+    return this.createUrl('cart/count');
   }
   /* #endregion */
 }

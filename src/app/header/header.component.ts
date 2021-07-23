@@ -3,6 +3,7 @@ import {AuthService} from '../auth/shared/auth.service';
 import {Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {AuthStoreService} from '../auth/shared/store/auth-store.service';
+import {CartNotificationService} from '../shared-services/cart-notification-service/cart-notification.service';
 
 @Component({
   selector: 'app-header',
@@ -14,8 +15,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
   username: string;
   isLoggedInSubscription: Subscription;
   usernameSubscription: Subscription;
+  cartItemCount?: number;
 
-  constructor(private authService: AuthService, private authStoreService: AuthStoreService, private router: Router) { }
+  constructor(
+    private authService: AuthService,
+    private authStoreService: AuthStoreService,
+    private cartNotificationService: CartNotificationService,
+    private router: Router) {
+    this.cartNotificationService.cartItemCount.subscribe(value => {
+      this.cartItemCount = value === 0 ? null : value;
+    });
+  }
 
   ngOnInit(): void {
     this.isLoggedInSubscription = this.authService.loggedInChanged$.subscribe(value => {

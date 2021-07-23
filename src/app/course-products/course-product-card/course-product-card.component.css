@@ -1,6 +1,7 @@
 
 .course-product-card{
   width: 420px;
+  min-height: 480px;
   margin: 12px;
   background-color: #2e2e2e;
   color: #f8f9fa;
@@ -32,4 +33,28 @@
   margin-right: auto;
   background-size: 100%;
 
+}
+
+
+.course-product-actions{
+  /*border: 3px solid red;*/
+  min-height: 55px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  /*border: 3px solid red;*/
+  padding: 0;
+}
+
+.navigate-course-details-button{
+  background-color: deepskyblue;
+  color: white;
+}
+
+.course-product-info-label{
+  font-weight: bold;
+  font-size: 16px;
+  /*border: 3px solid red;*/
+  margin: 0;
 }

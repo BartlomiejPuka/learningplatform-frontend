@@ -32,12 +32,14 @@
 
 
       <div class="col-4 cart-summary">
-        <label class="summary-title">Podsumowanie</label>
-        <div class="cart-summary-info">
+        <div *ngIf="cartItems.length">
+          <label class="summary-title">Podsumowanie</label>
+          <div class="cart-summary-info">
 
-        </div>
-        <div class="cart-summary-actions">
-          <button mat-flat-button class="submit-cart-button" (click)="submitCart()" >Zatwierdź</button>
+          </div>
+          <div class="cart-summary-actions">
+            <button  mat-flat-button class="submit-cart-button" (click)="submitCart()" >Zatwierdź</button>
+          </div>
         </div>
       </div>
     </div>

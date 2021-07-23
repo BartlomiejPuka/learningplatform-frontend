@@ -12,8 +12,6 @@ import {NgxWebstorageModule} from 'ngx-webstorage';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HomepageComponent } from './homepage/homepage.component';
-import { CoursesComponent } from './courses/courses.component';
-import { CourseCardComponent } from './courses/course-card/course-card.component';
 import {AppInterceptor} from './interceptors/AppInterceptor';
 import { LessonsComponent } from './lessons/lessons.component';
 import { LessonCardComponent } from './lessons/lesson-card/lesson-card.component';
@@ -32,6 +30,7 @@ import { CourseProductsComponent } from './course-products/course-products.compo
 import { CourseProductCardComponent } from './course-products/course-product-card/course-product-card.component';
 import { MyCoursesComponent } from './my-courses/my-courses.component';
 import {FlashMessagesModule} from 'flash-messages-angular';
+import { CourseComponent } from './course/course.component';
 
 
 @NgModule({
@@ -41,8 +40,6 @@ import {FlashMessagesModule} from 'flash-messages-angular';
     SingupComponent,
     LoginComponent,
     HomepageComponent,
-    CoursesComponent,
-    CourseCardComponent,
     LessonsComponent,
     LessonCardComponent,
     SphereEngineComponent,
@@ -53,6 +50,7 @@ import {FlashMessagesModule} from 'flash-messages-angular';
     CourseProductsComponent,
     CourseProductCardComponent,
     MyCoursesComponent,
+    CourseComponent,
   ],
   imports: [
     BrowserModule,

@@ -58,6 +58,7 @@ export class CoursesDropdownComponent implements OnInit {
       return false;
     };
     this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate(['course-products/category/', courseCategoryPayload.id]);
+    console.log(courseCategoryPayload.urlSlug);
+    this.router.navigate(['course-products/category/', courseCategoryPayload.urlSlug]);
   }
 }

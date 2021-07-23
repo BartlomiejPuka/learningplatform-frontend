@@ -5,6 +5,7 @@ import {ApiEndpointsService} from '../backend-api/api-endpoints.service';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {FlashMessagesService} from 'flash-messages-angular';
 import {ApiErrorPayload} from '../shared/api-error-payload';
+import {CartNotificationService} from '../shared-services/cart-notification-service/cart-notification.service';
 
 @Component({
   selector: 'app-cart',
@@ -16,7 +17,8 @@ export class CartComponent implements OnInit {
   cartItems: Array<CartItemPayload>;
   constructor(private apiHttpService: ApiHttpService,
               private apiEndpointService: ApiEndpointsService,
-              private flashMessagesService: FlashMessagesService) { }
+              private flashMessagesService: FlashMessagesService,
+              private cartNotificationService: CartNotificationService) { }
 
   ngOnInit(): void {
     this.fetchData();
@@ -33,6 +35,7 @@ export class CartComponent implements OnInit {
       if (response.status === 200){
         this.fetchData();
         this.flashMessagesService.show(`Usunięto kurs z koszyka.`, {cssClass: 'alert-warning', timeout: 2000});
+        this.cartNotificationService.refreshCartItemsCount();
       } else {
         this.flashMessagesService.show(`Operacja sie nie powiodła. Spróbuj ponownie.`, {cssClass: 'alert-danger', timeout: 2000});
       }
@@ -44,6 +47,7 @@ export class CartComponent implements OnInit {
         if (response.status === 200){
           this.fetchData();
           this.flashMessagesService.show('Gratulacje!' + '<br/><br/>'  + 'Udalo ci sie dokonac zakupu.', {cssClass: 'alert-success', timeout: 2000});
+          this.cartNotificationService.refreshCartItemsCount();
         } else {
           this.flashMessagesService.show(`Operacja sie nie powiodła. Spróbuj ponownie.`, {cssClass: 'alert-danger', timeout: 2000});
         }

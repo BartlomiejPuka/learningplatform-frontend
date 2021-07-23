@@ -5,6 +5,7 @@ import {ApiEndpointsService} from '../../backend-api/api-endpoints.service';
 import {AddCartItemPayload} from '../../shared/add-cart-item-payload';
 import {HttpResponse} from '@angular/common/http';
 import {FlashMessagesService} from 'flash-messages-angular';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-course-product-card',
@@ -16,7 +17,8 @@ export class CourseProductCardComponent implements OnInit {
   @Input() courseProductPayload: CourseProductPayload;
   constructor(private apiHttpService: ApiHttpService,
               private apiEndpointService: ApiEndpointsService,
-              private flashMessagesService: FlashMessagesService) {
+              private flashMessagesService: FlashMessagesService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -33,5 +35,10 @@ export class CourseProductCardComponent implements OnInit {
         this.flashMessagesService.show(`Operacja sie nie powiodła. Spróbuj ponownie.`, {cssClass: 'alert-danger', timeout: 2000});
       }
     });
+  }
+
+  navigateToCourseDetails(courseProductPayload: CourseProductPayload): void {
+    console.log(courseProductPayload.urlSlug);
+    this.router.navigate(['/course/', courseProductPayload.urlSlug]);
   }
 }

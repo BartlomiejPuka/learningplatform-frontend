@@ -11,6 +11,7 @@ export class CourseProductPayload {
     public tasksCount: number,
     public inCart: boolean,
     public bought: boolean,
+    public urlSlug: string,
     public courseIconUrl: string,
     public categoryIconUrl: string){
     this.courseId = courseId;
@@ -23,6 +24,7 @@ export class CourseProductPayload {
     this.tasksCount = tasksCount;
     this.inCart = inCart;
     this.bought = bought;
+    this.urlSlug = urlSlug;
     this.courseIconUrl = courseIconUrl;
     this.categoryIconUrl = categoryIconUrl; }
 }
