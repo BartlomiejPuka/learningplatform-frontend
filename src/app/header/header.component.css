@@ -8,8 +8,15 @@
 .toolbar{
   background-color: #121119;
   color: #f8f9fa;
-  height: 125px;
+  height: 100px;
   vertical-align: center;
+  z-index: 12;
+  position: fixed;
+}
+
+.header-fill{
+  background-color: #2e2e2e;
+  height: 100px;
 }
 
 .toolbar-item{

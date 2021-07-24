@@ -1,6 +1,10 @@
 .course-title{
-  height: 200px;
-  font-size: 65px;
+  height: 320px;
+  font-size: 92px;
+  text-shadow: 0 0 14px #000;
+  -webkit-text-fill-color: white;
+  -webkit-text-stroke-color: black;
+  -webkit-text-stroke-width: 3.5px;
   font-weight: bold;
   color: #f8f9fa;
 
@@ -10,8 +14,8 @@
 
   user-select: none;
   background-size: cover;
-  background-repeat:   no-repeat;
-  background-position: center center;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .course-container{
@@ -43,14 +47,29 @@
 .course-details-content {
   border: 3px solid green;
   background-color: #2e2e2e;
-  height: 70vh;
+  min-height: 120vh;
   width: 50vw;
+  padding: 20px;
+}
+
+.course-details-content div:not(:first-child){
+  margin-top: 30px;
+}
+
+.course-details-content p {
+  color: white;
+  font-size: 32px;
+  font-weight: 300;
+}
+
+.course-info-font {
+  color: white;
+  font-size: 22px;
 }
 
 .course-info-offer {
   /*border: 21px solid blueviolet;*/
-  background-color: #bbbbbb;
-  min-height: 50vh;
+  max-height: 60vh;
   width: 30vw;
   display: flex;
   flex-direction: column;
@@ -63,11 +82,70 @@
   width: 100%;
   height: 120px;
   color: white;
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 36px;
+  font-weight: 600;
 }
 
 .course-info-actions {
   padding: 18px;
   border: 3px solid red;
+}
+
+.course-info {
+  color: white;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.course-info hr {
+  background-color: #3e3e3e;
+}
+
+.course-cons-container p{
+  color: orangered;
+  font-size: 22px;
+}
+
+.orange-icon{
+  color: orangered;
+  height:32px !important;
+  width:32px !important;
+  font-size:32px !important;
+}
+
+.course-info-title {
+  color:white;
+  font-size: 32px;
+  padding: 20px;
+  /*border: 3px solid red;*/
+}
+
+.course-info-price {
+  color:white;
+  font-size: 72px;
+  font-weight: bold;
+  padding: 20px;
+  /*border: 3px solid red;*/
+}
+
+.course-info-special-offer {
+  color: gray;
+  font-size: 22px;
+  padding: 20px;
+  /*border: 3px solid red;*/
+}
+
+.course-need-help {
+  margin-top: 20px;
+  border: 3px solid violet;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.course-need-help a {
+  font-size: 36px;
+  font-weight: 600;
+  color: white;
 }
