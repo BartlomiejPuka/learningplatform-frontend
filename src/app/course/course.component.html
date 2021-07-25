@@ -3,15 +3,23 @@
   <div class="course-title course-background-img">
     Kurs {{ courseDetailsPayload.title }}
   </div>
-  <div class="course-details-container">
+  <div class="course-details-container" >
     <div class="course-details-content">
       <div class="course-detailed-description-section">
         <p class="course-details-section-title">Opis kursu</p>
-        <div class="course-description">{{ courseDetailsPayload.detailedDescription }}</div>
+        <div class="course-description" *ngIf="courseDetailsPayload.detailedDescription; else noInfoCourseDescription">
+          {{ courseDetailsPayload.detailedDescription }}
+        </div>
+        <ng-template #noInfoCourseDescription>
+          <div class="course-description" >
+            Brak informacji.
+          </div>
+        </ng-template>
       </div>
 
       <div class="course-lessons">
         <p class="course-details-section-title">Kurs obejmuje nastepujące tematy</p>
+        <div *ngIf="courseDetailsPayload.lessons.length; else noLessonsDescription">
         <ol *ngFor="let lesson of courseDetailsPayload.lessons" class="list-group customized-list-group">
           <li class="list-group-item customized-group-item">
             <span>
@@ -20,23 +28,43 @@
             </span>
           </li>
         </ol>
+        </div>
+        <ng-template #noLessonsDescription>
+          <div class="course-description" >
+            Brak informacji.
+          </div>
+        </ng-template>
       </div>
 
       <div class="course-scopes">
         <p class="course-details-section-title">Czego sie nauczysz</p>
-        <ol *ngFor="let scope of courseDetailsPayload.courseScopes" class="list-group customized-list-group">
-          <li class="list-group-item customized-group-item">
-            <span>
-              <i class="material-icons">check_box</i>
-            {{ scope.scope }}
-            </span>
-          </li>
-        </ol>
+        <div *ngIf="courseDetailsPayload.courseScopes.length; else noScopesDescription">
+          <ol *ngFor="let scope of courseDetailsPayload.courseScopes" class="list-group customized-list-group">
+            <li class="list-group-item customized-group-item">
+              <span>
+                <i class="material-icons">check_box</i>
+              {{ scope.scope }}
+              </span>
+            </li>
+          </ol>
+        </div>
+        <ng-template #noScopesDescription>
+          <div class="course-description" >
+            Brak informacji.
+          </div>
+        </ng-template>
       </div>
 
       <div class="course-recipient-section-description">
         <p class="course-details-section-title">Dla kogo jest ten kurs?</p>
-        <div class="course-description">{{ courseDetailsPayload.recipientDescription }}</div>
+        <div class="course-description" *ngIf="courseDetailsPayload.recipientDescription; else noRecipientDescription">
+          {{ courseDetailsPayload.recipientDescription }}
+        </div>
+        <ng-template #noRecipientDescription>
+          <div class="course-description" >
+            Brak informacji.
+          </div>
+        </ng-template>
       </div>
 
       <div class="course-contains-section">
