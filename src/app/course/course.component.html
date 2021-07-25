@@ -3,75 +3,93 @@
   <div class="course-title course-background-img">
     Kurs {{ courseDetailsPayload.title }}
   </div>
-    <div class="course-details-container">
-      <div class="course-details-content">
-        <div>
-          <p>Kurs obejmuje nastepujące tematy:</p>
-          <div class="course-info-font">{{ courseDetailsPayload.description }}</div>
-        </div>
-
-        <div>
-          <p>Czego sie nauczysz:</p>
-        </div>
-
-        <div>
-          <p>Dla kogo jest ten kurs?</p>
-        </div>
-
-        <div>
-          <p>Kurs zawiera:</p>
-          <mat-list>
-            <mat-list-item>
-              <mat-icon matListIcon class="orange-icon">crop_square</mat-icon>
-              <div class="course-info-font" matLine>Zestaw {{ courseDetailsPayload.lessonsCount }} lekcji</div>
-            </mat-list-item>
-            <mat-list-item>
-              <mat-icon matListIcon class="orange-icon">crop_square</mat-icon>
-              <div class="course-info-font" matLine>Zestaw {{ courseDetailsPayload.tasksCount }} zadań</div>
-            </mat-list-item>
-          </mat-list>
-        </div>
-
-        <div>
-          <p>Tematy lekcji:</p>
-          <div *ngFor="let lesson of courseDetailsPayload.lessons">
-            <p>{{ lesson.title }}</p>
-          </div>
-        </div>
+  <div class="course-details-container">
+    <div class="course-details-content">
+      <div class="course-detailed-description-section">
+        <p class="course-details-section-title">Opis kursu</p>
+        <div class="course-description">{{ courseDetailsPayload.detailedDescription }}</div>
       </div>
-      <div class="course-info-offer">
-        <div class="course-img-container">
-          <img src="{{ courseDetailsPayload.iconUrl }}" class="course-img unselectable" />
-          <div class="course-info">
-            <div class="course-info-title">Kurs online</div>
-            <hr>
-            <div class="course-info-price">{{ courseDetailsPayload.price }} zł</div>
-            <div class="course-info-special-offer">Oferta specjalna</div>
-            <hr>
-            <mat-list class="course-cons-container">
-              <mat-list-item>
-                <mat-icon matListIcon class="orange-icon">check_circle</mat-icon>
-                <p matLine>Gwarantowany zwrot pieniędzy</p>
-              </mat-list-item>
-              <mat-list-item>
-                <mat-icon matListIcon class="orange-icon">check_circle</mat-icon>
-                <p matLine>Dostępny na PC, smartfonie i tablecie</p>
-              </mat-list-item>
-              <mat-list-item>
-                <mat-icon matListIcon class="orange-icon">check_circle</mat-icon>
-                <p matLine>100% Satysfakcji</p>
-              </mat-list-item>
-            </mat-list>
-            <hr>
-          </div>
-        </div>
-        <div class="course-info-actions">
-          <button mat-flat-button class="add-to-cart-item" (click)="addToCart(courseDetailsPayload)" >Dodaj do koszyka</button>
-        </div>
 
-        <div class="course-need-help">
-          <a>Potrzebujesz pomocy?</a>
-        </div>
+      <div class="course-lessons">
+        <p class="course-details-section-title">Kurs obejmuje nastepujące tematy</p>
+        <ol *ngFor="let lesson of courseDetailsPayload.lessons" class="list-group customized-list-group">
+          <li class="list-group-item customized-group-item">
+            <span>
+              <i class="material-icons">check_box</i>
+              {{ lesson.title }}
+            </span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="course-scopes">
+        <p class="course-details-section-title">Czego sie nauczysz</p>
+        <ol *ngFor="let scope of courseDetailsPayload.courseScopes" class="list-group customized-list-group">
+          <li class="list-group-item customized-group-item">
+            <span>
+              <i class="material-icons">check_box</i>
+            {{ scope.scope }}
+            </span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="course-recipient-section-description">
+        <p class="course-details-section-title">Dla kogo jest ten kurs?</p>
+        <div class="course-description">{{ courseDetailsPayload.recipientDescription }}</div>
+      </div>
+
+      <div class="course-contains-section">
+        <p class="course-details-section-title">Kurs zawiera</p>
+        <ol class="list-group customized-list-group">
+          <li class="list-group-item customized-group-item">
+            <span>
+            <i class="material-icons">check_box</i>
+              Zestaw {{ courseDetailsPayload.lessonsCount }} lekcji
+            </span>
+          </li>
+          <li class="list-group-item customized-group-item">
+            <span>
+            <i class="material-icons">check_box</i>
+            Zestaw {{ courseDetailsPayload.tasksCount }} zadań
+            </span>
+          </li>
+        </ol>
       </div>
     </div>
+    <div class="course-info-offer">
+      <div class="course-img-container">
+        <img src="{{ courseDetailsPayload.courseIconUrl }}" class="course-img unselectable" />
+        <div class="course-info">
+          <div class="course-info-title">Kurs online</div>
+          <hr>
+          <div class="course-info-price">{{ courseDetailsPayload.price }} zł</div>
+          <div class="course-info-special-offer">Oferta specjalna</div>
+          <hr>
+          <mat-list class="course-cons-container">
+            <mat-list-item>
+              <mat-icon matListIcon class="orange-icon">check_circle</mat-icon>
+              <p matLine>Gwarantowany zwrot pieniędzy</p>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon matListIcon class="orange-icon">check_circle</mat-icon>
+              <p matLine>Dostępny na PC, smartfonie i tablecie</p>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon matListIcon class="orange-icon">check_circle</mat-icon>
+              <p matLine>100% Satysfakcji</p>
+            </mat-list-item>
+          </mat-list>
+          <hr>
+        </div>
+      </div>
+      <div class="course-info-actions">
+        <button mat-flat-button class="add-to-cart-item" (click)="addToCart(courseDetailsPayload)" >Dodaj do koszyka</button>
+      </div>
+
+      <div class="course-need-help">
+        <a>Potrzebujesz pomocy?</a>
+      </div>
+    </div>
+  </div>
 </div>

@@ -62,7 +62,7 @@ export class ApiEndpointsService {
     return this.createUrl('courses/categories');
   }
   public getCourseDetailsByUrlSlug(slug: string): string {
-    return this.createUrl(`courses/${slug}/details`);
+    return this.createUrl(`products/course/${slug}/details`);
   }
 
   public getAllCartItems(): string {

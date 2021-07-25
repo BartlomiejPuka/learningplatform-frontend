@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {CourseDetailsPayload} from '../shared/course-details-payload';
+import {CourseProductDetailsPayload} from '../shared/course-product-details-payload';
 import {ApiHttpService} from '../backend-api/api-http.service';
 import {ApiEndpointsService} from '../backend-api/api-endpoints.service';
 import {AddCartItemPayload} from '../shared/add-cart-item-payload';
@@ -16,7 +16,7 @@ import {CartNotificationService} from '../shared-services/cart-notification-serv
 export class CourseComponent implements OnInit {
 
   courseUrlSlug: string;
-  courseDetailsPayload: CourseDetailsPayload;
+  courseDetailsPayload: CourseProductDetailsPayload;
   constructor(
     private apiHttpService: ApiHttpService,
     private apiEndpointService: ApiEndpointsService,
@@ -32,14 +32,15 @@ export class CourseComponent implements OnInit {
   }
 
   fetchData(): void {
-    this.apiHttpService.get<CourseDetailsPayload>(this.apiEndpointService.getCourseDetailsByUrlSlug(this.courseUrlSlug))
+    this.apiHttpService.get<CourseProductDetailsPayload>(this.apiEndpointService.getCourseDetailsByUrlSlug(this.courseUrlSlug))
       .subscribe((data) => {
+        console.log(data);
         this.courseDetailsPayload = data;
       });
   }
 
-  addToCart(courseDetailsPayload: CourseDetailsPayload): void {
-    const addCartItemPayload = new AddCartItemPayload(courseDetailsPayload.id);
+  addToCart(courseDetailsPayload: CourseProductDetailsPayload): void {
+    const addCartItemPayload = new AddCartItemPayload(courseDetailsPayload.courseId);
     this.apiHttpService
       .post(this.apiEndpointService.addCartItem(), addCartItemPayload, {observe: 'response'})
       .subscribe((response: HttpResponse<any>) => {
