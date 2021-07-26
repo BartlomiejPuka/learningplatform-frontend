@@ -1,4 +1,5 @@
 
+<div class="course-container-wrapper">
 <div class="container course-container">
   <div class="course-title course-background-img">
     Kurs {{ courseDetailsPayload.title }}
@@ -112,12 +113,26 @@
         </div>
       </div>
       <div class="course-info-actions">
-        <button mat-flat-button class="add-to-cart-item" (click)="addToCart(courseDetailsPayload)" >Dodaj do koszyka</button>
+        <ng-template [ngIf]="!courseDetailsPayload.inCart && !courseDetailsPayload.bought" ] >
+          <button mat-flat-button class="add-to-cart-item"
+                  (click)="addToCart(courseDetailsPayload)" >Dodaj do koszyka</button>
+        </ng-template>
+
+        <ng-template [ngIf]="courseDetailsPayload.inCart">
+          <button  mat-flat-button class="already-in-cart-button"
+                   (click)="addToCart(courseDetailsPayload)" >Znajduję sie w koszyku</button>
+        </ng-template>
+
+        <ng-template [ngIf]="courseDetailsPayload.bought">
+          <button  mat-flat-button class="go-to-course-button"
+                   (click)="addToCart(courseDetailsPayload)" >Przejdź do kursu</button>
+        </ng-template>
       </div>
 
       <div class="course-need-help">
-        <a>Potrzebujesz pomocy?</a>
+        <button mat-flat-button class="need-help-button">Potrzebujesz pomocy?</button>
       </div>
     </div>
   </div>
+</div>
 </div>

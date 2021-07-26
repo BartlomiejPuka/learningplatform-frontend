@@ -1,7 +1,41 @@
 
-<div class="my-courses-title my-courses-img">
-  Moje kursy
-</div>
-<div class="my-courses-container">
+<div class="my-courses-container-wrapper">
 
+  <div class="container my-courses-container">
+    <div class="my-courses-title my-courses-img">
+      Moje kursy
+    </div>
+
+    <div class="my-courses-content">
+      <div class="my-courses-content-title">
+        Wykupione kursy
+      </div>
+      <div class="my-courses-action-menu">
+
+      </div>
+
+      <div class="my-courses-content-container">
+          <div class="list-group customized-list-group" *ngFor="let course of enrolledCourses">
+            <div class="list-group-item customized-list-group-item" >
+              <div class="course-name-block">
+                <div>
+                  <div></div>
+                  <div class="course-name-title">{{ course }}</div>
+                </div>
+                <div>
+                  <button mat-flat-button class="start-course-button">Rozpocznij</button>
+                </div>
+              </div>
+              <hr>
+              <div class="course-details-block">
+                <div>Data wykupienia</div>
+                <div>Ważność</div>
+                <div>Lekcje</div>
+                <div>Zadania</div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
 </div>

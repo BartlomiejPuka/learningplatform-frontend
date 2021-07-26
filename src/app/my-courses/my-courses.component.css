@@ -2,16 +2,101 @@
 
 
 .my-courses-container{
-  height: 100vh;
+  background-color: #333333;
+  min-width: 70vw;
+  border: 3px solid red;
 }
 
 .my-courses-title{
-  height: 190px;
+  height: 320px;
   font-size: 65px;
   font-weight: bold;
   color: #f8f9fa;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   user-select: none;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 3px solid green;
+}
+
+.my-courses-container-wrapper{
+  background-color: #121119;
+}
+
+
+.my-courses-content{
+  border: 3px solid violet;
+  width: 50vw;
+  min-height: 80vh;
+}
+
+.my-courses-content-title{
+  border: 3px solid blue;
+  padding: 16px;
+  color: white;
+  font-size: 32px;
+}
+
+.my-courses-action-menu{
+  border: 3px solid orangered;
+  min-height: 80px;
+}
+
+.my-courses-content-container{
+  background-color: #bbbbbb;
+  min-height: 80vh;
+  margin: 16px;
+  border: 3px solid coral;
+}
+
+.course-name-block{
+  height: 110px;
+  border: 3px solid red;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.course-details-block{
+  height: 50px;
+  border: 3px solid blue;
+  color: black;
+  font-size: 18px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.customized-list-group{
+ padding: 16px;
+}
+
+.customized-list-group:not(:first-child){
+ margin-top: 30px;
+}
+
+.start-course-button{
+  background-color: royalblue;
+  color: white;
+  border-radius: 23px;
+  height: 45px;
+  width: 130px;
+}
+
+.course-name-title{
+  font-size: 26px;
+  font-weight: 600;
+  font-family: 'Raleway', sans-serif;
 }

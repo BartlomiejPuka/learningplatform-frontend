@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyCoursesComponent implements OnInit {
 
+  enrolledCourses: Array<string> = [
+    'Kurs pierwszy', 'Kurs drugi', 'Kurs trzeci'
+  ];
   constructor() { }
 
   ngOnInit(): void {
