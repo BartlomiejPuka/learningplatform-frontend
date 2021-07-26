@@ -90,5 +90,9 @@ export class ApiEndpointsService {
   public getCartItemsCount(): string {
     return this.createUrl('cart/count');
   }
+
+  public getAllBoughtCourses(): string {
+    return this.createUrl('user/courses/bought');
+  }
   /* #endregion */
 }

@@ -15,12 +15,13 @@
       </div>
 
       <div class="my-courses-content-container">
+        <ng-template [ngIf]="enrolledCourses.length" >
           <div class="list-group customized-list-group" *ngFor="let course of enrolledCourses">
             <div class="list-group-item customized-list-group-item" >
               <div class="course-name-block">
                 <div>
                   <div></div>
-                  <div class="course-name-title">{{ course }}</div>
+                  <div class="course-name-title">{{ course.courseTitle }}</div>
                 </div>
                 <div>
                   <button mat-flat-button class="start-course-button">Rozpocznij</button>
@@ -28,13 +29,19 @@
               </div>
               <hr>
               <div class="course-details-block">
-                <div>Data wykupienia</div>
-                <div>Ważność</div>
-                <div>Lekcje</div>
-                <div>Zadania</div>
+                <div>Data wykupienia {{ course.purchasedDate }}</div>
+                <div>Ważność Bez limitu</div>
+                <div>Lekcje {{ course.totalLessonsCount }}</div>
+                <div>Zadania {{ course.totalTasksCount }}</div>
               </div>
             </div>
           </div>
+        </ng-template>
+        <ng-template [ngIf]="!enrolledCourses.length" >
+            <div class="my-courses-no-content-info">
+              Brak informacji.
+            </div>
+        </ng-template>
       </div>
     </div>
   </div>
