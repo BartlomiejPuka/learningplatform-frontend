@@ -8,6 +8,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatListModule} from '@angular/material/list';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import {MatListModule} from '@angular/material/list';
     MatInputModule,
     MatBadgeModule,
     MatListModule,
+    MatProgressBarModule,
   ]
 })
 export class MaterialModule { }

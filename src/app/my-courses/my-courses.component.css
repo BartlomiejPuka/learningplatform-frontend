@@ -31,7 +31,7 @@
 
 .my-courses-content{
   border: 3px solid violet;
-  width: 50vw;
+  width: 80%;
   min-height: 80vh;
 }
 
@@ -56,7 +56,7 @@
 
 .course-name-block{
   height: 110px;
-  border: 3px solid red;
+  /*border: 3px solid red;*/
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -67,7 +67,7 @@
 
 .course-details-block{
   height: 50px;
-  border: 3px solid blue;
+  /*border: 3px solid blue;*/
   color: black;
   font-size: 18px;
   padding-left: 20px;
@@ -83,6 +83,11 @@
  padding: 16px;
 }
 
+.customized-list-group-item{
+  border-radius: 6px;
+  box-shadow: 2px 2px 10px #000000;
+}
+
 .customized-list-group:not(:first-child){
  margin-top: 30px;
 }
@@ -96,7 +101,7 @@
 }
 
 .course-name-title{
-  font-size: 26px;
+  font-size: 32px;
   font-weight: 600;
   font-family: 'Raleway', sans-serif;
 }
@@ -104,11 +109,28 @@
 .my-courses-no-content-info{
   color: white;
   font-size: 32px;
-  border: 3px solid red;
+  /*border: 3px solid red;*/
+  text-align: center;
+  margin-top: 10px;
 }
 
-.my-courses-no-content-container{
-  border: 3px solid green;
-  top: 50%;
-  left: 50%;
+
+.course-details-bold-info{
+  margin-right: 7px;
+  font-weight: 550;
+  color: #2e2e2e;
+}
+
+.course-progress-block{
+  /*border: 3px solid green;*/
+  font-size: 18px;
+}
+
+.course-task-progress-block{
+  margin-top: 24px;
+}
+
+.course-icon{
+  border: 0.5px solid black;
+  margin-right: 20px;
 }

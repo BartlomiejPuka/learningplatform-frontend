@@ -45,7 +45,8 @@ export class CourseComponent implements OnInit {
       .post(this.apiEndpointService.addCartItem(), addCartItemPayload, {observe: 'response'})
       .subscribe((response: HttpResponse<any>) => {
         if (response.status === 201) {
-          this.flashMessagesService.show(`Dobry Wybór!<br><br>Dodałeś kurs "${ courseDetailsPayload.title }" do swojego koszyka.`, {cssClass: 'alert-success', timeout: 2000});
+          this.flashMessagesService.show(`Dobry Wybór!<br><br>Dodałeś kurs "${ courseDetailsPayload.title }" do swojego koszyka.`,
+            {cssClass: 'alert-success', timeout: 5000});
           this.cartNotificationService.refreshCartItemsCount();
           this.fetchData();
         } else {

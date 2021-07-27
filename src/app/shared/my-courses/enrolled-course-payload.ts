@@ -14,7 +14,9 @@ export class EnrolledCoursePayload {
     public completedLessonsCount: number,
     public completedTasksCount: number,
     public lessonProgressList: Array<LessonProgressPayload>,
-    public taskProgressList: Array<TaskProgressPayload>
+    public taskProgressList: Array<TaskProgressPayload>,
+    public lessonsProgressPercentage: number,
+    public tasksProgressPercentage: number
   ) {
       this.courseId = courseId;
       this.courseTitle = courseTitle;
@@ -27,6 +29,8 @@ export class EnrolledCoursePayload {
       this.completedTasksCount = completedTasksCount;
       this.lessonProgressList = lessonProgressList;
       this.taskProgressList = taskProgressList;
+      this.lessonsProgressPercentage = lessonsProgressPercentage;
+      this.tasksProgressPercentage = tasksProgressPercentage;
   }
 
 }

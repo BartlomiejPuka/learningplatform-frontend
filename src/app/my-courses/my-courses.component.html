@@ -19,27 +19,60 @@
           <div class="list-group customized-list-group" *ngFor="let course of enrolledCourses">
             <div class="list-group-item customized-list-group-item" >
               <div class="course-name-block">
-                <div>
-                  <div></div>
-                  <div class="course-name-title">{{ course.courseTitle }}</div>
+                <div class="course-name-title">
+                  <span>
+                    <img src="{{ course.courseIconUrl }}" class="course-icon" height="160px" width="160px" />
+                    {{ course.courseTitle }}
+                  </span>
                 </div>
                 <div>
                   <button mat-flat-button class="start-course-button">Rozpocznij</button>
                 </div>
               </div>
               <hr>
+              <div class="course-progress-block">
+                <div class="course-lesson-progress-block">
+                  <div class="course-details-bold-info" >
+                    Ukończone lekcje {{ course.completedLessonsCount }} / {{ course.totalTasksCount }}
+                  </div>
+                  <div>
+                    <mat-progress-bar mode="determinate" value="{{ course.lessonsProgressPercentage }}"></mat-progress-bar>
+                  </div>
+                </div>
+                <div class="course-task-progress-block">
+                  <div class="course-details-bold-info" >
+                    Ukończone zadania {{ course.completedTasksCount }} / {{ course.totalTasksCount }}
+                  </div>
+                  <div>
+                    <mat-progress-bar mode="determinate" value="{{ course.tasksProgressPercentage }}"></mat-progress-bar>
+                  </div>
+                </div>
+              </div>
+              <hr>
               <div class="course-details-block">
-                <div>Data wykupienia {{ course.purchasedDate }}</div>
-                <div>Ważność Bez limitu</div>
-                <div>Lekcje {{ course.totalLessonsCount }}</div>
-                <div>Zadania {{ course.totalTasksCount }}</div>
+                <div class="course-purchased-date-block">
+                  <span class="course-details-bold-info">Data wykupienia</span>
+                  <span  >{{ course.purchasedDate | date: 'dd.MM.yyyy' }}</span>
+                </div>
+                <div class="course-limit-block">
+                  <span class="course-details-bold-info">Ważność</span>
+                  <span  >Bez limitu</span>
+                </div>
+                <div class="course-lessons-block">
+                  <span class="course-details-bold-info">Lekcje</span>
+                  <span  >{{ course.totalLessonsCount }}</span>
+                </div>
+                <div class="course-tasks-block">
+                  <span class="course-details-bold-info">Zadania</span>
+                  <span  >{{ course.totalTasksCount }}</span>
+                </div>
               </div>
             </div>
           </div>
         </ng-template>
         <ng-template [ngIf]="!enrolledCourses.length" >
             <div class="my-courses-no-content-info">
-              Brak informacji.
+              <span>Brak informacji.</span>
             </div>
         </ng-template>
       </div>
