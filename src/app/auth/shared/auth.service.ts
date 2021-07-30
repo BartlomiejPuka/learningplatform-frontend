@@ -1,5 +1,5 @@
 import {Injectable, Output} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {SingupRequestPayload} from '../models/signup-request.payload';
 import {Observable, Subject} from 'rxjs';
 import {LoginRequestPayload} from '../models/login.request.payload';
@@ -28,17 +28,20 @@ export class AuthService {
   }
   login(loginRequestPayload: LoginRequestPayload): Observable<boolean>{
     const headers = new HttpHeaders().set(InterceptorSkipHeader, '');
-    return this.httpClient.post<LoginResponsePayload>(this.loginApiRoute,
-      loginRequestPayload, {
-        headers
-      }).pipe(map(data => {
-        this.authStoreService.store('authenticationToken', data.authenticationToken);
-        this.authStoreService.store('username', data.username);
-        this.authStoreService.store('refreshToken', data.refreshToken);
-        this.authStoreService.store('expiresAt', data.expiresAt);
-        this.loggedInChangedSource.next(true);
-        this.usernameChangedSource.next(data.username);
-        console.log(data.username);
+
+    return this.httpClient.post<LoginRequestPayload>(this.loginApiRoute,
+        JSON.stringify(loginRequestPayload)
+      , {
+        headers, observe: 'response'
+      }).pipe(map((data: HttpResponse<any>) => {
+        console.log('Authorization', data.headers.get('Authorization'));
+        this.authStoreService.store('authenticationToken', data.headers.get('Authorization'));
+        // this.authStoreService.store('username', data.username);
+        // this.authStoreService.store('refreshToken', data.refreshToken);
+        // this.authStoreService.store('expiresAt', data.expiresAt);
+        // this.loggedInChangedSource.next(true);
+        // this.usernameChangedSource.next(data.username);
+        // console.log(data.username);
         return true;
     }));
   }

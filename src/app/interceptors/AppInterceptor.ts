@@ -13,6 +13,7 @@ export class AppInterceptor implements HttpInterceptor {
       const headers = req.headers.delete(InterceptorSkipHeader);
       return next.handle(req.clone({ headers }));
     }
+    console.log('jwt token ', this.authStoreService.getJwtToken());
     const clonedRequest = req.clone({
       headers: req.headers.set('Authorization',  'Bearer ' + this.authStoreService.getJwtToken())
     });

@@ -5,6 +5,11 @@ import {HttpHeaders} from '@angular/common/http';
 export class Constants {
   public readonly API_ENDPOINT: string = 'http://localhost:8080/api';
   public readonly defaultOptions: any = {
-      headers: new HttpHeaders({'Content-Type': 'application/json'}),
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Header': '*',
+      }),
     };
 }

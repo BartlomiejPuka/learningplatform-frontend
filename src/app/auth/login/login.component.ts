@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.loginRequestPayload.username = this.loginForm.get('username').value;
     this.loginRequestPayload.password = this.loginForm.get('password').value;
+    console.log(this.loginRequestPayload);
     this.authService.login(this.loginRequestPayload).subscribe(data => {
       console.log('Login successful');
       this.router.navigateByUrl('');
