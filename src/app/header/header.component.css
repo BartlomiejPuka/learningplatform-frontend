@@ -80,3 +80,10 @@ a:link, a:visited, a:hover, a:active {
     linear-gradient(135deg, orangered 60%, orange);
   height: 30px;
 }
+
+.username-label{
+  border: 3px solid red;
+  font-weight: 300;
+  display: flex;
+  align-items: flex-end;
+}

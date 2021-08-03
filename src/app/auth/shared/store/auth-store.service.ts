@@ -16,7 +16,7 @@ export class AuthStoreService {
     this.localStorage.clear(key);
   }
   getJwtToken() {
-    return this.localStorage.retrieve('authenticationToken');
+    return this.localStorage.retrieve('encodedJwtToken');
   }
   getUserName() {
     return this.localStorage.retrieve('username');

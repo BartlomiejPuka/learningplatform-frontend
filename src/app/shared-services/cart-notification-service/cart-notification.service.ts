@@ -11,7 +11,14 @@ export class CartNotificationService {
   constructor(
     private apiHttpService: ApiHttpService,
     private apiEndpointService: ApiEndpointsService
-  ) { }
+  ) {
+    window.onbeforeunload = (ev) => {
+      alert('before refresh');
+    };
+    window.onunload = (ev) => {
+      alert('after refresh');
+    };
+  }
   public refreshCartItemsCount(): void {
     this.apiHttpService.get<number>(this.apiEndpointService.getCartItemsCount())
       .subscribe(data => {
