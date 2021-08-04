@@ -8,17 +8,17 @@
     <div class="course-panel-content">
       <div class="course-panel-options">
         <button mat-flat-button (click)="onLessonsButtonClicked()"
-                [ngClass] ="{'course-option-checked' : lessonsButtonChecked  }" >Lekcje</button>
+                [ngClass] ="selectedOption == 'lessons' ? 'course-option-checked' : 'course-option-unchecked'" >Lekcje</button>
         <button mat-flat-button (click)="onTasksButtonClicked()"
-                [ngClass] ="{'course-option-checked': tasksButtonChecked }" >Zadania</button>
+                [ngClass] ="selectedOption == 'tasks' ? 'course-option-checked' : 'course-option-unchecked'" >Zadania</button>
       </div>
     </div>
-    <div class="course-option-container">
-        <div *ngIf="lessonsButtonChecked">
+    <div class="course-option-container" [ngSwitch]="selectedOption">
+        <div *ngSwitchCase="'lessons'">
           <app-lesson-list></app-lesson-list>
         </div>
-        <div *ngIf="tasksButtonChecked">
-          <app-task-list></app-task-list>
+        <div *ngSwitchCase="'tasks'">
+          <app-task-list [courseUrlSlug]="courseUrlSlug" ></app-task-list>
         </div>
     </div>
   </div>

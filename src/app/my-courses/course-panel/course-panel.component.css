@@ -5,7 +5,7 @@
 
 .course-panel-container{
   background-color: #333333;
-  min-width: 70vw;
+  min-width: 90vw;
   border: 3px solid red;
 }
 
@@ -28,18 +28,32 @@
 
 .course-panel-options > button{
   margin: 10px 10px 10px 0px;
-  width: 300px;
-  height: 140px;
-  /*background-color: whitesmoke;*/
-  color: #333333;
+  width: 340px;
+  height: 120px;
+  font-size: 22px;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.course-panel-content {
+  border: 3px solid red;
+  background: linear-gradient(white 50%, #3e3e3e 0%);
 }
 
 
 .course-option-checked {
   background-color: orangered;
+  color: white;
+}
+
+.course-option-unchecked{
+  background-color: whitesmoke;
+  color: #2e2e2e;
 }
 
 .course-option-container{
   background-color: lightskyblue;
   height: 600px;
+  padding: 12px;
+  border: 3px solid green;
 }

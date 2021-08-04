@@ -1,1 +1,21 @@
-<p>task-list works!</p>
+<div class="list-group customized-list-group" *ngFor="let task of courseTasks">
+  <div class="list-group-item customized-list-group-item" >
+    <div class="task-group-item-container" >
+      <div class="task-group-item-title" >
+        {{ task.orderId }}. {{ task.title }}
+      </div>
+
+      <div class="task-group-item-details-container">
+        <div class="task-group-item-info">
+          <div *ngIf="task.completed" class="task-completed-status-container">
+            <mat-icon class="task-completed-icon">check_circle</mat-icon>
+            <div class="task-completed-text">Ukończono</div>
+          </div>
+        </div>
+        <div class="task-group-item-options">
+          <button mat-flat-button class="start-task-button btn-primary">Start</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

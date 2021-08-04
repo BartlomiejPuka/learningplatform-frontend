@@ -11,6 +11,7 @@ export class CoursePanelComponent implements OnInit {
   courseUrlSlug: string;
   lessonsButtonChecked: boolean;
   tasksButtonChecked: boolean;
+  selectedOption: string;
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -21,13 +22,11 @@ export class CoursePanelComponent implements OnInit {
     this.courseUrlSlug = this.route.snapshot.paramMap.get('slug');
   }
 
-  onLessonsButtonClicked() {
-    this.lessonsButtonChecked = true;
-    this.tasksButtonChecked = false;
+  onLessonsButtonClicked(): void {
+    this.selectedOption = 'lessons';
   }
 
-  onTasksButtonClicked() {
-    this.tasksButtonChecked = true;
-    this.lessonsButtonChecked = false;
+  onTasksButtonClicked(): void {
+    this.selectedOption = 'tasks';
   }
 }

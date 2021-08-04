@@ -9,4 +9,10 @@ export class EnrolledCourseEndpointsApiService extends ApiEndpointsService{
   public getAllBoughtCourses(): string {
     return this.createUrl('user/courses/bought');
   }
+  public getAllNotBoughtCourses(): string {
+    return this.createUrl('user/courses/not-bought');
+  }
+  public getAllCourseTasks(courseUrlSlug: string): string {
+    return this.createUrl(`user/courses/${ courseUrlSlug }/tasks`);
+  }
 }
