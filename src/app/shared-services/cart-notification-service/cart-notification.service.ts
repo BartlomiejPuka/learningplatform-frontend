@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {ApiHttpService} from '../../backend-api/api-http.service';
-import {ApiEndpointsService} from '../../backend-api/api-endpoints.service';
+import {CartEndpointsApiService} from '../../backend-api/cart-endpoints-api/cart-endpoints-api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class CartNotificationService {
   public cartItemCount: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   constructor(
     private apiHttpService: ApiHttpService,
-    private apiEndpointService: ApiEndpointsService
+    private cartEndpointApiService: CartEndpointsApiService
   ) {
     window.onbeforeunload = (ev) => {
       alert('before refresh');
@@ -20,7 +20,7 @@ export class CartNotificationService {
     };
   }
   public refreshCartItemsCount(): void {
-    this.apiHttpService.get<number>(this.apiEndpointService.getCartItemsCount())
+    this.apiHttpService.get<number>(this.cartEndpointApiService.getCartItemsCount())
       .subscribe(data => {
         console.log(data);
         this.cartItemCount.next(data);

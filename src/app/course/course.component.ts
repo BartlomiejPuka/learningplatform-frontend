@@ -2,11 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {CourseProductDetailsPayload} from '../shared/course-product-details-payload';
 import {ApiHttpService} from '../backend-api/api-http.service';
-import {ApiEndpointsService} from '../backend-api/api-endpoints.service';
 import {AddCartItemPayload} from '../shared/add-cart-item-payload';
 import {HttpResponse} from '@angular/common/http';
 import {FlashMessagesService} from 'flash-messages-angular';
 import {CartNotificationService} from '../shared-services/cart-notification-service/cart-notification.service';
+import {CartEndpointsApiService} from '../backend-api/cart-endpoints-api/cart-endpoints-api.service';
+import {CourseProductsEndpointsApiService} from '../backend-api/course-products-endpoints-api/course-products-endpoints-api.service';
 
 @Component({
   selector: 'app-course',
@@ -19,7 +20,8 @@ export class CourseComponent implements OnInit {
   courseDetailsPayload: CourseProductDetailsPayload;
   constructor(
     private apiHttpService: ApiHttpService,
-    private apiEndpointService: ApiEndpointsService,
+    private cartEndpointApiService: CartEndpointsApiService,
+    private courseProductsEndpointApiService: CourseProductsEndpointsApiService,
     private flashMessagesService: FlashMessagesService,
     private cartNotificationService: CartNotificationService,
     private route: ActivatedRoute,
@@ -32,7 +34,7 @@ export class CourseComponent implements OnInit {
   }
 
   fetchData(): void {
-    this.apiHttpService.get<CourseProductDetailsPayload>(this.apiEndpointService.getCourseDetailsByUrlSlug(this.courseUrlSlug))
+    this.apiHttpService.get<CourseProductDetailsPayload>(this.courseProductsEndpointApiService.getCourseProductsDetailsByUrlSlug(this.courseUrlSlug))
       .subscribe((data) => {
         console.log(data);
         this.courseDetailsPayload = data;
@@ -42,7 +44,7 @@ export class CourseComponent implements OnInit {
   addToCart(courseDetailsPayload: CourseProductDetailsPayload): void {
     const addCartItemPayload = new AddCartItemPayload(courseDetailsPayload.courseId);
     this.apiHttpService
-      .post(this.apiEndpointService.addCartItem(), addCartItemPayload, {observe: 'response'})
+      .post(this.cartEndpointApiService.addCartItem(), addCartItemPayload, {observe: 'response'})
       .subscribe((response: HttpResponse<any>) => {
         if (response.status === 201) {
           this.flashMessagesService.show(`Dobry Wybór!<br><br>Dodałeś kurs "${ courseDetailsPayload.title }" do swojego koszyka.`,

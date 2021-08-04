@@ -6,6 +6,7 @@ import {ApiEndpointsService} from '../backend-api/api-endpoints.service';
 import {QueryStringParameters} from '../backend-api/query-string-parameters';
 import {CoursePayload} from '../shared/course-payload';
 import {Router} from '@angular/router';
+import {CourseEndpointsApiService} from '../backend-api/course-endpoints-api/course-endpoints-api.service';
 
 @Component({
   selector: 'app-courses-search-bar',
@@ -17,7 +18,7 @@ export class CoursesSearchBarComponent implements OnInit {
   filteredCourses: Array<CoursePayload>;
   constructor(
     private apiHttpService: ApiHttpService,
-    private apiEndpointService: ApiEndpointsService,
+    private courseEndpointsApiService: CourseEndpointsApiService,
     private router: Router,
   ) {
     this.filteredCourses = new Array<CoursePayload>();
@@ -40,7 +41,7 @@ export class CoursesSearchBarComponent implements OnInit {
     const queryStringHandler = (qs: QueryStringParameters) => {
         qs.push('title', title);
       };
-    return this.apiHttpService.get(this.apiEndpointService.getCoursesEndpoint(queryStringHandler));
+    return this.apiHttpService.get(this.courseEndpointsApiService.getCourses(queryStringHandler));
   }
   goToCourseDetails(course: CoursePayload): void {
     // tslint:disable-next-line:only-arrow-functions

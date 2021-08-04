@@ -8,6 +8,7 @@ import {Constants} from '../backend-api/constants';
 import {Observable} from 'rxjs';
 import {CourseCategoryPayload} from '../shared/course-category-payload';
 import {Router} from '@angular/router';
+import {CourseEndpointsApiService} from '../backend-api/course-endpoints-api/course-endpoints-api.service';
 
 @Component({
   selector: 'app-courses-dropdown',
@@ -21,7 +22,7 @@ export class CoursesDropdownComponent implements OnInit {
   courses: Array<CoursePayload>;
   constructor(
     private apiHttpService: ApiHttpService,
-    private apiEndpointService: ApiEndpointsService,
+    private courseEndpointApiService: CourseEndpointsApiService,
     private router: Router
   )  {
     this.coursesMap = new Map<string, Array<CoursePayload>>();
@@ -44,13 +45,13 @@ export class CoursesDropdownComponent implements OnInit {
     });
   }
   getCategorizedCourses(): Observable<Map<string, Array<CoursePayload>>> {
-      return this.apiHttpService.get<Map<string, Array<CoursePayload>>>(this.apiEndpointService.getCategorizedCoursesEndpoint());
+      return this.apiHttpService.get<Map<string, Array<CoursePayload>>>(this.courseEndpointApiService.getCategorizedCourses());
   }
   getCourses(): Observable<Array<CoursePayload>> {
-    return this.apiHttpService.get<Array<CoursePayload>>(this.apiEndpointService.getCoursesEndpoint());
+    return this.apiHttpService.get<Array<CoursePayload>>(this.courseEndpointApiService.getCourses());
   }
   getCategories(): Observable<Array<CourseCategoryPayload>> {
-    return this.apiHttpService.get<Array<CourseCategoryPayload>>(this.apiEndpointService.getCategories());
+    return this.apiHttpService.get<Array<CourseCategoryPayload>>(this.courseEndpointApiService.getCoursesCategories());
   }
   goToCourseProducts(courseCategoryPayload: CourseCategoryPayload): void {
     // tslint:disable-next-line:only-arrow-functions

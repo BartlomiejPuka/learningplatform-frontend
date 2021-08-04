@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CartItemPayload} from '../shared/cart-item-payload';
 import {ApiHttpService} from '../backend-api/api-http.service';
-import {ApiEndpointsService} from '../backend-api/api-endpoints.service';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {FlashMessagesService} from 'flash-messages-angular';
-import {ApiErrorPayload} from '../shared/api-error-payload';
 import {CartNotificationService} from '../shared-services/cart-notification-service/cart-notification.service';
+import {CartEndpointsApiService} from '../backend-api/cart-endpoints-api/cart-endpoints-api.service';
 
 @Component({
   selector: 'app-cart',
@@ -16,7 +15,7 @@ export class CartComponent implements OnInit {
 
   cartItems: Array<CartItemPayload>;
   constructor(private apiHttpService: ApiHttpService,
-              private apiEndpointService: ApiEndpointsService,
+              private cartEndpointApiService: CartEndpointsApiService,
               private flashMessagesService: FlashMessagesService,
               private cartNotificationService: CartNotificationService) { }
 
@@ -24,13 +23,13 @@ export class CartComponent implements OnInit {
     this.fetchData();
   }
   fetchData(): void {
-    this.apiHttpService.get<Array<CartItemPayload>>(this.apiEndpointService.getAllCartItems()).subscribe((data) => {
+    this.apiHttpService.get<Array<CartItemPayload>>(this.cartEndpointApiService.getAllCartItems()).subscribe((data) => {
       this.cartItems = data;
       console.log(data);
     });
   }
   removeCartItem(id: number) {
-    this.apiHttpService.post(this.apiEndpointService.removeCartItem(id), null, {observe: 'response'})
+    this.apiHttpService.post(this.cartEndpointApiService.removeCartItem(id), null, {observe: 'response'})
       .subscribe(( response: HttpResponse<any>) => {
       if (response.status === 200){
         this.fetchData();
@@ -42,7 +41,7 @@ export class CartComponent implements OnInit {
     });
   }
   submitCart(): void {
-    this.apiHttpService.post(this.apiEndpointService.submitCart(), null, {observe: 'response'})
+    this.apiHttpService.post(this.cartEndpointApiService.submitCart(), null, {observe: 'response'})
       .subscribe((response: HttpResponse<any>) => {
         if (response.status === 200){
           this.fetchData();

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
+import {HttpHeaders, HttpResponse} from '@angular/common/http';
 import {SingupRequestPayload} from '../models/signup-request.payload';
 import {Observable, Subject} from 'rxjs';
 import {LoginRequestPayload} from '../models/login.request.payload';
@@ -7,6 +7,8 @@ import {map} from 'rxjs/operators';
 import {InterceptorSkipHeader} from '../../interceptors/AppInterceptor';
 import {AuthStoreService} from './store/auth-store.service';
 import jwt_decode, {JwtPayload} from 'jwt-decode';
+import {AuthEndpointsApiService} from '../../backend-api/auth-endpoints-api/auth-endpoints-api.service';
+import {ApiHttpService} from '../../backend-api/api-http.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,19 +18,19 @@ export class AuthService {
   loggedInChanged$ = this.loggedInChangedSource.asObservable();
   private usernameChangedSource = new Subject<string>();
   usernameChanged$ = this.usernameChangedSource.asObservable();
-  loginApiRoute = 'http://localhost:8080/api/auth/login';
-  signupApiRoute = 'http://localhost:8080/api/auth/signup';
-  constructor(private httpClient: HttpClient, private authStoreService: AuthStoreService) { }
+  constructor(
+    private authEndpointsApiService: AuthEndpointsApiService,
+    private apiHttpService: ApiHttpService,
+    private authStoreService: AuthStoreService) { }
 
   signup(signupRequestPayload: SingupRequestPayload): Observable<any>{
     const headers = new HttpHeaders().set(InterceptorSkipHeader, '');
-    return this.httpClient.post(this.signupApiRoute, signupRequestPayload,
+    return this.apiHttpService.post(this.authEndpointsApiService.signup(), signupRequestPayload,
       {responseType: 'text', headers});
   }
   login(loginRequestPayload: LoginRequestPayload): Observable<boolean>{
     const headers = new HttpHeaders().set(InterceptorSkipHeader, '');
-
-    return this.httpClient.post<LoginRequestPayload>(this.loginApiRoute,
+    return this.apiHttpService.post<LoginRequestPayload>(this.authEndpointsApiService.login(),
         JSON.stringify(loginRequestPayload)
       , {
         headers, observe: 'response'
@@ -45,7 +47,6 @@ export class AuthService {
         this.authStoreService.store('roles', decodedJwtToken[`roles`]);
         this.loggedInChangedSource.next(true);
         this.usernameChangedSource.next(decodedJwtToken.sub);
-        // console.log(data.username);
         return true;
     }));
   }

@@ -1,12 +1,13 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, NavigationEnd, Router, RouterEvent} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ApiHttpService} from '../backend-api/api-http.service';
 import {ApiEndpointsService} from '../backend-api/api-endpoints.service';
 import {CourseCategoryPayload} from '../shared/course-category-payload';
 import {Observable, Subject} from 'rxjs';
-import {filter, pairwise, startWith, takeUntil} from 'rxjs/operators';
 import {CourseProductPayload} from '../shared/course-product-payload';
 import {CartNotificationService} from '../shared-services/cart-notification-service/cart-notification.service';
+import {CourseProductsEndpointsApiService} from '../backend-api/course-products-endpoints-api/course-products-endpoints-api.service';
+import {CourseEndpointsApiService} from '../backend-api/course-endpoints-api/course-endpoints-api.service';
 
 @Component({
   selector: 'app-course-products',
@@ -21,8 +22,9 @@ export class CourseProductsComponent implements OnInit {
     private apiHttpService: ApiHttpService,
     private apiEndpointService: ApiEndpointsService,
     private cartNotificationService: CartNotificationService,
-    private route: ActivatedRoute,
-    private router: Router) {
+    private courseProductsEndpointsApiService: CourseProductsEndpointsApiService,
+    private courseEndpointsApiService: CourseEndpointsApiService,
+    private route: ActivatedRoute) {
 
   }
   courseCategoryUrlSlug: string;
@@ -44,10 +46,11 @@ export class CourseProductsComponent implements OnInit {
     });
   }
   getCourseCategoryById(): Observable<CourseCategoryPayload> {
-    return this.apiHttpService.get<CourseCategoryPayload>(this.apiEndpointService.getCategoryByUrlSlug(this.courseCategoryUrlSlug));
+    // return this.apiHttpService.get<CourseCategoryPayload>(this.apiEndpointService.getCategoryByUrlSlug(this.courseCategoryUrlSlug));
+    return this.apiHttpService.get<CourseCategoryPayload>(this.courseEndpointsApiService.getCourseCategoryByUrlSlug(this.courseCategoryUrlSlug));
   }
   getCourseProducts(): Observable<Array<CourseProductPayload>> {
-    return this.apiHttpService.get<Array<CourseProductPayload>>(this.apiEndpointService.getCourseProductsByUrlSlug(this.courseCategoryUrlSlug));
+    return this.apiHttpService.get<Array<CourseProductPayload>>(this.courseProductsEndpointsApiService.getCourseProductsByUrlSlug(this.courseCategoryUrlSlug));
   }
   itemAddedToCartEventHandler(value: boolean) {
     console.log('item added to cart event handler', value);

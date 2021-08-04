@@ -6,6 +6,7 @@ import {AddCartItemPayload} from '../../shared/add-cart-item-payload';
 import {HttpResponse} from '@angular/common/http';
 import {FlashMessagesService} from 'flash-messages-angular';
 import {Router} from '@angular/router';
+import {CartEndpointsApiService} from '../../backend-api/cart-endpoints-api/cart-endpoints-api.service';
 
 @Component({
   selector: 'app-course-product-card',
@@ -16,7 +17,7 @@ export class CourseProductCardComponent implements OnInit {
   @Output() itemAddedToCart: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Input() courseProductPayload: CourseProductPayload;
   constructor(private apiHttpService: ApiHttpService,
-              private apiEndpointService: ApiEndpointsService,
+              private cartEndpointApiService: CartEndpointsApiService,
               private flashMessagesService: FlashMessagesService,
               private router: Router) {
   }
@@ -26,7 +27,7 @@ export class CourseProductCardComponent implements OnInit {
   addToCart(course: CourseProductPayload) {
     const addCartItemPayload = new AddCartItemPayload(course.courseId);
     this.apiHttpService
-      .post(this.apiEndpointService.addCartItem(), addCartItemPayload, {observe: 'response'})
+      .post(this.cartEndpointApiService.addCartItem(), addCartItemPayload, {observe: 'response'})
       .subscribe((response: HttpResponse<any>) => {
       if (response.status === 201) {
         this.itemAddedToCart.emit(true);
