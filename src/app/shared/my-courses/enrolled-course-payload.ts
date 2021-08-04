@@ -7,6 +7,7 @@ export class EnrolledCoursePayload {
     public courseId: number,
     public courseTitle: string,
     public courseIconUrl: string,
+    public courseUrlSlug: string,
     public purchasedDate: Date,
     public completed: boolean,
     public totalLessonsCount: number,
@@ -21,6 +22,7 @@ export class EnrolledCoursePayload {
       this.courseId = courseId;
       this.courseTitle = courseTitle;
       this.courseIconUrl = courseIconUrl;
+      this.courseUrlSlug = courseUrlSlug;
       this.purchasedDate = purchasedDate;
       this.completed = completed;
       this.totalLessonsCount = totalLessonsCount;

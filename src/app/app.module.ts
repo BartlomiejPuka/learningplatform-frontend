@@ -31,6 +31,11 @@ import { CourseProductCardComponent } from './course-products/course-product-car
 import { MyCoursesComponent } from './my-courses/my-courses.component';
 import {FlashMessagesModule} from 'flash-messages-angular';
 import { CourseComponent } from './course/course.component';
+import { TaskListComponent } from './my-courses/course-panel/task-list/task-list.component';
+import { LessonListComponent } from './my-courses/course-panel/lesson-list/lesson-list.component';
+import { TaskDetailsComponent } from './my-courses/course-panel/task-list/task-details/task-details.component';
+import { LessonDetailsComponent } from './my-courses/course-panel/lesson-list/lesson-details/lesson-details.component';
+import { CoursePanelComponent } from './my-courses/course-panel/course-panel.component';
 
 
 @NgModule({
@@ -51,6 +56,11 @@ import { CourseComponent } from './course/course.component';
     CourseProductCardComponent,
     MyCoursesComponent,
     CourseComponent,
+    TaskListComponent,
+    LessonListComponent,
+    TaskDetailsComponent,
+    LessonDetailsComponent,
+    CoursePanelComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {EnrolledCoursePayload} from '../shared/my-courses/enrolled-course-payload';
 import {ApiHttpService} from '../backend-api/api-http.service';
-import {ApiEndpointsService} from '../backend-api/api-endpoints.service';
 import {EnrolledCourseEndpointsApiService} from '../backend-api/enrolled-course-endpoints-api/enrolled-course-endpoints-api.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-my-courses',
@@ -15,7 +15,7 @@ export class MyCoursesComponent implements OnInit {
   constructor(
     private apiHttpService: ApiHttpService,
     private enrolledCourseEndpointsApiService: EnrolledCourseEndpointsApiService,
-    private apiEndpointService: ApiEndpointsService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -27,5 +27,10 @@ export class MyCoursesComponent implements OnInit {
       .subscribe(data => {
         this.enrolledCourses = data;
     });
+  }
+
+  onStartButtonClicked(course: EnrolledCoursePayload): void {
+    alert(course.courseUrlSlug);
+    this.router.navigateByUrl(`/course/${ course.courseUrlSlug }/panel`);
   }
 }
