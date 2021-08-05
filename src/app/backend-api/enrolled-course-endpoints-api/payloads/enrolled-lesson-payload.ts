@@ -8,6 +8,7 @@ export class EnrolledLessonPayload {
     public orderId: number,
     public title: string,
     public description: string,
+    public urlSlug: string,
     public lessonFiles: Array<LessonFilePayload>){
       this.lessonId = lessonId;
       this.completed = completed;
@@ -15,6 +16,7 @@ export class EnrolledLessonPayload {
       this.orderId = orderId;
       this.title = title;
       this.description = description;
+      this.urlSlug = urlSlug;
       this.lessonFiles = lessonFiles;
   }
 }

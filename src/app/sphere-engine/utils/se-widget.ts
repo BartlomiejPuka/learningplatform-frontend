@@ -12,4 +12,7 @@ export class SeWidget{
   unsubscribe(eventName: string, callback): void{
     this.seWidget.events.unsubscribe(eventName, callback);
   }
+  ready(callback): void{
+    this.seWidget.ready(callback);
+  }
 }

@@ -7,7 +7,8 @@ export class EnrolledTaskPayload {
     public orderId: number,
     public SEID: string,
     public title: string,
-    public description: string
+    public description: string,
+    public urlSlug: string,
     ){
      this.completed = completed;
      this.completionDate = completionDate;
@@ -15,6 +16,7 @@ export class EnrolledTaskPayload {
      this.SEID = SEID;
      this.title = title;
      this.description = description;
+     this.urlSlug = urlSlug;
   }
 }
 

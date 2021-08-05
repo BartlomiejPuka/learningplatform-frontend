@@ -30,7 +30,6 @@ export class MyCoursesComponent implements OnInit {
   }
 
   onStartButtonClicked(course: EnrolledCoursePayload): void {
-    alert(course.courseUrlSlug);
     this.router.navigateByUrl(`/course/${ course.courseUrlSlug }/panel`);
   }
 }

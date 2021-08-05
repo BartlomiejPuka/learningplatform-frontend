@@ -5,14 +5,14 @@ export class EnrolledTaskDetailsPayload {
     public completed: boolean,
     public completionDate: Date,
     public orderId: number,
-    public SEID: string,
+    public seid: string,
     public title: string,
     public description: string
   ){
     this.completed = completed;
     this.completionDate = completionDate;
     this.orderId = orderId;
-    this.SEID = SEID;
+    this.seid = seid;
     this.title = title;
     this.description = description;
   }

@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoginRequestPayload} from '../models/login.request.payload';
 import {AuthService} from '../shared/auth.service';
 import {Router} from '@angular/router';
+import {FlashMessagesService} from 'flash-messages-angular';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,9 @@ export class LoginComponent implements OnInit {
   isError: any;
   loginRequestPayload: LoginRequestPayload;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService,
+              private flashMessagesService: FlashMessagesService,
+              private router: Router) {
     this.loginRequestPayload = {
       username: '',
       password: ''
@@ -33,6 +36,7 @@ export class LoginComponent implements OnInit {
     console.log(this.loginRequestPayload);
     this.authService.login(this.loginRequestPayload).subscribe(data => {
       console.log('Login successful');
+      this.flashMessagesService.show(`Poprawnie zalogowano.`, {cssClass: 'alert-success', timeout: 2000});
       this.router.navigateByUrl('');
     });
   }

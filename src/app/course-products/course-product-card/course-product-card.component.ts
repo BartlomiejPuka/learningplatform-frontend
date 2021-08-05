@@ -31,7 +31,7 @@ export class CourseProductCardComponent implements OnInit {
       .subscribe((response: HttpResponse<any>) => {
       if (response.status === 201) {
         this.itemAddedToCart.emit(true);
-        this.flashMessagesService.show(`Dobry Wybór!<br><br>Dodałeś kurs "${ course.title }" do swojego koszyka.`, {cssClass: 'alert-success', timeout: 2000});
+        this.flashMessagesService.show(`Dobry Wybór!<br>Dodałeś kurs "${ course.title }" do swojego koszyka.`, {cssClass: 'alert-success', timeout: 2000});
       } else {
         this.flashMessagesService.show(`Operacja sie nie powiodła. Spróbuj ponownie.`, {cssClass: 'alert-danger', timeout: 2000});
       }

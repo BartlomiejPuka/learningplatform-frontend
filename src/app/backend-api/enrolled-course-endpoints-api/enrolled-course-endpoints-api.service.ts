@@ -15,4 +15,7 @@ export class EnrolledCourseEndpointsApiService extends ApiEndpointsService{
   public getAllCourseTasks(courseUrlSlug: string): string {
     return this.createUrl(`user/courses/${ courseUrlSlug }/tasks`);
   }
+  public getCourseTaskDetails(courseUrlSlug: string, taskUrlSlug: string): string {
+    return this.createUrl(`user/courses/${ courseUrlSlug }/tasks/${ taskUrlSlug }/details`);
+  }
 }

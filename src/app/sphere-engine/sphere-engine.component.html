@@ -1,6 +1,18 @@
 <div class="container se-container"  >
 <!--    <button (click)="loadWidget()" >load</button>-->
-  <div class="se-widget" [attr.data-widget]="dataWidget" [attr.data-id]="dataId" ></div>
+    <ng-container *ngIf="!loaded">
+      <div class="skeleton-row-container">
+        <ngx-skeleton-loader [theme]="{
+          'height': '100%', 'width': '70%'}" count="1" appearance="line" animation="pulse" ></ngx-skeleton-loader>
+        <ngx-skeleton-loader [theme]="{
+          'height': '100%', 'width': '29%', 'float': 'right'}" count="1" appearance="line" animation="pulse" ></ngx-skeleton-loader>
+      </div>
+
+      <ngx-skeleton-loader [theme]="{
+          'height': '50vh'}" count="1" appearance="line" animation="pulse" ></ngx-skeleton-loader>
+    </ng-container>
+
+    <div class="se-widget"  [attr.data-widget] ="this.dataWidget" [attr.data-id]="this.dataId" ></div>
 
 </div>
 

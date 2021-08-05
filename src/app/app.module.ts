@@ -36,6 +36,7 @@ import { LessonListComponent } from './my-courses/course-panel/lesson-list/lesso
 import { TaskDetailsComponent } from './my-courses/course-panel/task-list/task-details/task-details.component';
 import { LessonDetailsComponent } from './my-courses/course-panel/lesson-list/lesson-details/lesson-details.component';
 import { CoursePanelComponent } from './my-courses/course-panel/course-panel.component';
+import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
 
 
 @NgModule({
@@ -74,6 +75,7 @@ import { CoursePanelComponent } from './my-courses/course-panel/course-panel.com
     MatMenuModule,
     MatAutocompleteModule,
     FlashMessagesModule.forRoot(),
+    NgxSkeletonLoaderModule
   ],
   providers: [
     {

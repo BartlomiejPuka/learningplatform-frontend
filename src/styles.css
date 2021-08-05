@@ -43,8 +43,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 {
   z-index: 10000;
   text-align: center;
-  font-size: 30px;
+  font-size: 34px;
+  font-weight: bold;
   width: 50vw;
+  line-height: 1.2;
   animation-delay: 1s !important;
   animation:
     fadeOut 1s;

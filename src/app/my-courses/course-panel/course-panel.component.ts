@@ -11,7 +11,7 @@ export class CoursePanelComponent implements OnInit {
   courseUrlSlug: string;
   lessonsButtonChecked: boolean;
   tasksButtonChecked: boolean;
-  selectedOption: string;
+  selectedOption: string = 'tasks';
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {

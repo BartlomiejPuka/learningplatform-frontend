@@ -11,3 +11,12 @@
 .se-container{
   height: 650px;
 }
+
+.widget-skeleton-loader{
+  height: 500px;
+}
+
+.skeleton-row-container{
+  /*border: 3px solid red;*/
+  height: 100px;
+}

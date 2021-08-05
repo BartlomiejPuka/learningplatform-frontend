@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {CourseProductDetailsPayload} from '../shared/course-product-details-payload';
 import {ApiHttpService} from '../backend-api/api-http.service';
 import {AddCartItemPayload} from '../shared/add-cart-item-payload';
@@ -24,6 +24,7 @@ export class CourseComponent implements OnInit {
     private courseProductsEndpointApiService: CourseProductsEndpointsApiService,
     private flashMessagesService: FlashMessagesService,
     private cartNotificationService: CartNotificationService,
+    private router: Router,
     private route: ActivatedRoute,
   ) { }
 
@@ -47,7 +48,7 @@ export class CourseComponent implements OnInit {
       .post(this.cartEndpointApiService.addCartItem(), addCartItemPayload, {observe: 'response'})
       .subscribe((response: HttpResponse<any>) => {
         if (response.status === 201) {
-          this.flashMessagesService.show(`Dobry Wybór!<br><br>Dodałeś kurs "${ courseDetailsPayload.title }" do swojego koszyka.`,
+          this.flashMessagesService.show(`Dobry Wybór!<br>Dodałeś kurs "${ courseDetailsPayload.title }" do swojego koszyka.`,
             {cssClass: 'alert-success', timeout: 5000});
           this.cartNotificationService.refreshCartItemsCount();
           this.fetchData();
@@ -55,5 +56,8 @@ export class CourseComponent implements OnInit {
           this.flashMessagesService.show(`Operacja sie nie powiodła. Spróbuj ponownie.`, {cssClass: 'alert-danger', timeout: 2000});
         }
       });
+  }
+  goToCourse(courseDetailsPayload: CourseProductDetailsPayload): void {
+   this.router.navigateByUrl(`/course/${ this.courseUrlSlug }/panel`);
   }
 }
