@@ -1,8 +1,18 @@
 
 <div class="course-panel-container-wrapper">
-  <div class="container course-panel-container">
-    <div class="course-panel-title">
-      {{ courseUrlSlug }}
+  <div class="course-panel-container">
+    <div class="course-panel-title-section">
+        <img src="{{ enrolledCourse.courseIconUrl }}" class="course-icon" height="360px" width="360px" />
+        <div class="course-title">
+          <div>
+            {{ enrolledCourse.courseTitle }}
+          </div>
+          <div class="course-information">
+            <div>Liczba zadań: {{ enrolledCourse.totalTasksCount }}</div>
+            <div class="vertical-line"></div>
+            <div>Liczba lekcji: {{ enrolledCourse.totalLessonsCount }}</div>
+          </div>
+        </div>
     </div>
 
     <div class="course-panel-content">
@@ -15,7 +25,7 @@
     </div>
     <div class="course-option-container" [ngSwitch]="selectedOption">
         <div *ngSwitchCase="'lessons'">
-          <app-lesson-list></app-lesson-list>
+          <app-lesson-list [courseUrlSlug]="courseUrlSlug" ></app-lesson-list>
         </div>
         <div *ngSwitchCase="'tasks'">
           <app-task-list [courseUrlSlug]="courseUrlSlug" ></app-task-list>

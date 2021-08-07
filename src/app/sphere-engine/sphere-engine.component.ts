@@ -1,10 +1,12 @@
-import {AfterViewInit, Component, Input, OnDestroy} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnDestroy, Output, ViewChild} from '@angular/core';
 import {SeUtilFunctions} from './utils/se-util-functions';
 import {SeWidget} from './utils/se-widget';
 import {EnrolledTaskDetailsPayload} from '../backend-api/enrolled-course-endpoints-api/payloads/enrolled-task-details-payload';
 import {CheckStatusPayload} from '../shared/sphere-engine/check-status-payload';
 import {FlashMessagesService} from 'flash-messages-angular';
 import {checkStatusMap} from '../shared/sphere-engine/check-status-map';
+import {EnrolledCourseEndpointsApiService} from '../backend-api/enrolled-course-endpoints-api/enrolled-course-endpoints-api.service';
+import {ApiHttpService} from '../backend-api/api-http.service';
 
 
 @Component({
@@ -14,8 +16,8 @@ import {checkStatusMap} from '../shared/sphere-engine/check-status-map';
 })
 export class SphereEngineComponent implements OnDestroy, AfterViewInit {
   private enrolledTaskDetailsPayload: EnrolledTaskDetailsPayload = null;
-  @Input()
-  public set enrolledTaskDetails(val: EnrolledTaskDetailsPayload) {
+  @Output() private solutionAccepted: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Input() public set enrolledTaskDetails(val: EnrolledTaskDetailsPayload) {
     this.enrolledTaskDetailsPayload = val;
     if (val != null){
       setTimeout(() => {
@@ -29,7 +31,9 @@ export class SphereEngineComponent implements OnDestroy, AfterViewInit {
   loaded: boolean;
 
   constructor(
-    private flashMessageService: FlashMessagesService
+    private flashMessageService: FlashMessagesService,
+    private enrolledCourseEndpointsApiService: EnrolledCourseEndpointsApiService,
+    private apiHttpService: ApiHttpService,
   ) {
     this.dataId = '';
     this.dataWidget = '1';
@@ -38,6 +42,7 @@ export class SphereEngineComponent implements OnDestroy, AfterViewInit {
     this.seWidget?.unsubscribe('beforeSendSubmission', this.beforeSendSubmissionCallback);
     this.seWidget?.unsubscribe('afterSendSubmission', this.afterSendSubmissionCallback);
     this.seWidget?.unsubscribe('checkStatus', this.checkSubmissionStatus);
+    this.seWidget?.iframe.remove();
     SeUtilFunctions.dropSeWidget(this.dataId);
   }
   beforeSendSubmissionCallback(data: any): boolean {
@@ -60,6 +65,8 @@ export class SphereEngineComponent implements OnDestroy, AfterViewInit {
         selectedCssClass = 'alert-danger';
         break;
       case 15:
+        this.completeTask();
+        this.solutionAccepted.emit(true);
         selectedCssClass = 'alert-success';
         break;
       default:
@@ -77,16 +84,32 @@ export class SphereEngineComponent implements OnDestroy, AfterViewInit {
 
     setTimeout(() => {
       console.log('hello');
-      this.seWidget = SeUtilFunctions.getSeWidget(this.dataId);
-      this.seWidget.subscribe('beforeSendSubmission', this.beforeSendSubmissionCallback);
-      this.seWidget.subscribe('afterSendSubmission', (data) => {
-        this.afterSendSubmissionCallback(data, this.flashMessageService);
-      });
-      this.seWidget.subscribe('checkStatus', (data: CheckStatusPayload) => {
-        this.checkSubmissionStatus(data, this.flashMessageService);
-      });
-      this.loaded = true;
+      try {
+        this.seWidget = SeUtilFunctions.getSeWidget(this.dataId);
+        this.loaded = true;
+      } catch (e) {
+        console.log('caught', e);
+      }
+      if (this.seWidget.isPresent()) {
+        console.log('sewidget', this.seWidget);
+        this.seWidget.subscribe('beforeSendSubmission', this.beforeSendSubmissionCallback);
+        this.seWidget.subscribe('afterSendSubmission', (data) => {
+          this.afterSendSubmissionCallback(data, this.flashMessageService);
+        });
+        this.seWidget.subscribe('checkStatus', (data: CheckStatusPayload) => {
+          this.checkSubmissionStatus(data, this.flashMessageService);
+        });
+      }
     }, 1500);
+  }
+
+  completeTask(): void {
+    const courseUrlSlug = this.enrolledTaskDetailsPayload.courseUrlSlug;
+    const taskUrlSlug = this.enrolledTaskDetailsPayload.taskUrlSlug;
+    this.apiHttpService.put(this.enrolledCourseEndpointsApiService.completeTask(courseUrlSlug, taskUrlSlug), null)
+      .subscribe((data) => {
+        console.log('task complete put request', data);
+      });
   }
 
   ngAfterViewInit(): void {

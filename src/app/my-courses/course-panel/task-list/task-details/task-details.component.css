@@ -2,4 +2,41 @@
 .task-details-container{
   background-color: #2e2e2e;
   padding: 10px;
+  height: 100vh;
+  border: 3px solid green;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.task-details-se{
+  width: 100%;
+}
+
+.go-to-tasks-button{
+  background-color: green;
+  color: white;
+  font-size: 23px;
+  height: 110px;
+  width: 60%;
+}
+
+.task-details-options{
+  margin-top: 10px;
+  width: 50vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid blue;
+}
+
+.show-element{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.hide-element{
+  opacity: 0;
+  pointer-events: none;
 }

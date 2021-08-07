@@ -15,4 +15,10 @@ export class SeWidget{
   ready(callback): void{
     this.seWidget.ready(callback);
   }
+  isPresent(): boolean{
+    return this.seWidget != null;
+  }
+  get iframe(): HTMLIFrameElement{
+    return this.seWidget.iframe;
+  }
 }

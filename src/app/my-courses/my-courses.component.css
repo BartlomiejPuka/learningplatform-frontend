@@ -3,12 +3,12 @@
 
 .my-courses-container{
   background-color: #333333;
-  min-width: 70vw;
+  width: 100%;
   border: 3px solid red;
 }
 
 .my-courses-title{
-  height: 320px;
+  height: 200px;
   font-size: 65px;
   font-weight: bold;
   color: #f8f9fa;
@@ -25,7 +25,9 @@
 }
 
 .my-courses-container-wrapper{
+  border: 3px solid blueviolet;
   background-color: #121119;
+  width: 100%;
 }
 
 

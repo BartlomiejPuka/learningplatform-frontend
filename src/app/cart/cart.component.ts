@@ -45,7 +45,7 @@ export class CartComponent implements OnInit {
       .subscribe((response: HttpResponse<any>) => {
         if (response.status === 200){
           this.fetchData();
-          this.flashMessagesService.show('Gratulacje!' + '<br/><br/>'  + 'Udalo ci sie dokonac zakupu.', {cssClass: 'alert-success', timeout: 2000});
+          this.flashMessagesService.show(`Gratulacje!<br/> Udało ci się dokonać zakupu.`, {cssClass: 'alert-success', timeout: 2000});
           this.cartNotificationService.refreshCartItemsCount();
         } else {
           this.flashMessagesService.show(`Operacja sie nie powiodła. Spróbuj ponownie.`, {cssClass: 'alert-danger', timeout: 2000});

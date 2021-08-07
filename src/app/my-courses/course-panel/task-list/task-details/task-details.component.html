@@ -1,3 +1,11 @@
 <div class="task-details-container">
-<app-sphere-engine [enrolledTaskDetails]="enrolledTaskDetails" ></app-sphere-engine>
+  <div class="task-details-se">
+  <app-sphere-engine [enrolledTaskDetails]="enrolledTaskDetails"
+                     (solutionAccepted)="handleSolutionAccepted($event)"></app-sphere-engine>
+  </div>
+
+  <div class="task-details-options" >
+      <button mat-flat-button [ngClass]="solutionAccepted ? 'show-element' : 'hide-element'"
+              class="go-to-tasks-button" (click)="onGoToTaskButtonClicked()">Przejdź do kolejnych zadań!</button>
+  </div>
 </div>

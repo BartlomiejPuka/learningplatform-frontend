@@ -25,6 +25,7 @@ export class MyCoursesComponent implements OnInit {
   fetchData(): void {
     this.apiHttpService.get<Array<EnrolledCoursePayload>>(this.enrolledCourseEndpointsApiService.getAllBoughtCourses())
       .subscribe(data => {
+        console.log(data);
         this.enrolledCourses = data;
     });
   }

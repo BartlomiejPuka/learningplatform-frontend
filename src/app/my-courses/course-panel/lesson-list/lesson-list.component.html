@@ -1,1 +1,21 @@
-<p>lesson-list works!</p>
+<div class="list-group customized-list-group" *ngFor="let lesson of courseLessons">
+  <div class="list-group-item customized-list-group-item" >
+    <div class="lesson-group-item-container" >
+      <div class="lesson-group-item-title" >
+        {{ lesson.orderId }}. {{ lesson.title }}
+      </div>
+
+      <div class="lesson-group-item-details-container">
+        <div class="lesson-group-item-info">
+          <div *ngIf="lesson.completed" class="lesson-completed-status-container">
+            <mat-icon class="lesson-completed-icon">check_circle</mat-icon>
+            <div class="lesson-completed-text">Ukończono</div>
+          </div>
+        </div>
+        <div class="lesson-group-item-options">
+          <button mat-flat-button class="start-lesson-button btn-primary" (click)="onStartTaskButtonClicked(lesson.urlSlug)">Start</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

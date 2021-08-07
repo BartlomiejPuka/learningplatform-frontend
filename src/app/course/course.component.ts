@@ -49,7 +49,7 @@ export class CourseComponent implements OnInit {
       .subscribe((response: HttpResponse<any>) => {
         if (response.status === 201) {
           this.flashMessagesService.show(`Dobry Wybór!<br>Dodałeś kurs "${ courseDetailsPayload.title }" do swojego koszyka.`,
-            {cssClass: 'alert-success', timeout: 5000});
+            {cssClass: 'alert-success', timeout: 2000});
           this.cartNotificationService.refreshCartItemsCount();
           this.fetchData();
         } else {
