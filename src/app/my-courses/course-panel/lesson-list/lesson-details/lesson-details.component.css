@@ -1,0 +1,49 @@
+
+.lesson-details-container{
+  border: 3px solid blue;
+  width: 100%;
+  background-color: #2e2e2e;
+  height: 100vh;
+}
+
+.lesson-details-submit{
+  border: 3px solid red;
+  height: 60px;
+  width: 280px;
+}
+
+.lesson-details-options-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid green;
+}
+
+.lesson-details-options{
+  border: 3px solid blueviolet;
+  display: flex;
+  justify-content: center;
+}
+
+.lesson-details-content{
+  min-height: 600px;
+  border: 3px solid red;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.lesson-details-page{
+  border: 3px solid blueviolet;
+  width: 60vw;
+  color: white;
+  font-size: 20px;
+}
+
+.submit-lesson-button{
+  background-color: green;
+  width: 100%;
+  height: 100%;
+}

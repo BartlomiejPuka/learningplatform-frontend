@@ -12,6 +12,9 @@ export class EnrolledCourseEndpointsApiService extends ApiEndpointsService{
   public getAllNotBoughtCourses(): string {
     return this.createUrl('user/courses/not-bought');
   }
+  public getCourseByCourseUrlSlug(courseUrlSlug: string): string {
+    return this.createUrl(`user/courses/${ courseUrlSlug }`);
+  }
   public getAllCourseTasks(courseUrlSlug: string): string {
     return this.createUrl(`user/courses/${ courseUrlSlug }/tasks`);
   }
@@ -24,7 +27,10 @@ export class EnrolledCourseEndpointsApiService extends ApiEndpointsService{
   public getAllCourseLessons(courseUrlSlug: string): string {
     return this.createUrl(`user/courses/${ courseUrlSlug }/lessons`);
   }
-  public getCourseByCourseUrlSlug(courseUrlSlug: string): string {
-    return this.createUrl(`user/courses/${ courseUrlSlug }`);
+  public getCourseLessonDetails(courseUrlSlug: string, lessonUrlSlug: string): string {
+    return this.createUrl(`user/courses/${ courseUrlSlug }/lessons/${ lessonUrlSlug }/details`);
+  }
+  public completeLesson(courseUrlSlug: string, lessonUrlSlug: string): string {
+    return this.createUrl(`user/courses/${ courseUrlSlug }/lessons/${ lessonUrlSlug }/complete`);
   }
 }

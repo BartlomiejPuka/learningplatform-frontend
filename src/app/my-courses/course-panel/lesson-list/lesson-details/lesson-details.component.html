@@ -1,1 +1,26 @@
-<p>lesson-details works!</p>
+
+
+<div class="lesson-details-container">
+  <div class="lesson-details-options-container">
+    <div class="lesson-details-submit">
+      <button mat-flat-button
+              class="submit-lesson-button"
+              [hidden]="currentPage != totalPages"
+      >Przejdź do następnej lekcji</button>
+    </div>
+    <div class="lesson-details-options" >
+      <button mat-flat-button
+              [disabled]="currentPage == 1"
+              (click)="moveToPreviousPage()">Poprzednia strona</button>
+      <button mat-flat-button
+              [disabled]="currentPage == totalPages"
+              (click)="moveToNextPage()">Następna strona</button>
+    </div>
+  </div>
+
+  <div class="lesson-details-content">
+    <div class="lesson-details-page">
+      <div [innerHTML]="safeHtmlContent | safeHtml" ></div>
+    </div>
+  </div>
+</div>

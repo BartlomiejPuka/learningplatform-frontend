@@ -37,6 +37,7 @@ import { TaskDetailsComponent } from './my-courses/course-panel/task-list/task-d
 import { LessonDetailsComponent } from './my-courses/course-panel/lesson-list/lesson-details/lesson-details.component';
 import { CoursePanelComponent } from './my-courses/course-panel/course-panel.component';
 import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
+import {SafeHtmlPipe} from './pipe/safe-html-pipe';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
     TaskDetailsComponent,
     LessonDetailsComponent,
     CoursePanelComponent,
+    SafeHtmlPipe,
   ],
   imports: [
     BrowserModule,
