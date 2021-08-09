@@ -4,6 +4,7 @@ import {LoginRequestPayload} from '../models/login.request.payload';
 import {AuthService} from '../shared/auth.service';
 import {Router} from '@angular/router';
 import {FlashMessagesService} from 'flash-messages-angular';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,7 @@ import {FlashMessagesService} from 'flash-messages-angular';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   isError: any;
+  errorMsg: string;
   loginRequestPayload: LoginRequestPayload;
 
   constructor(private authService: AuthService,
@@ -38,6 +40,9 @@ export class LoginComponent implements OnInit {
       console.log('Login successful');
       this.flashMessagesService.show(`Poprawnie zalogowano.`, {cssClass: 'alert-success', timeout: 2000});
       this.router.navigateByUrl('');
+    }, (response: HttpErrorResponse) => {
+      this.isError = true;
+      this.errorMsg = response.error.message;
     });
   }
 }

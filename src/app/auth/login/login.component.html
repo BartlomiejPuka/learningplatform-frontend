@@ -28,7 +28,7 @@
                             <span style="padding-left: 15px">Nowy użytkownik? <a routerLink="/sign-up">Zarejestruj się</a></span>
                         </span>
             <div class="login-failed" *ngIf='this.isError'>
-              <p class="login-failed-text">Login Failed. Please check your credentials and try again.</p>
+              <p class="login-failed-text"> {{ errorMsg }}</p>
             </div>
           </form>
         </div>
