@@ -10,7 +10,7 @@ export class Constants {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Access-Control-Allow-Origin': 'https://spring-learning-platform.herokuapp.com/',
+        'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Header': '*',
       }),
     };
