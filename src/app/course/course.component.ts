@@ -15,7 +15,6 @@ import {CourseProductsEndpointsApiService} from '../backend-api/course-products-
   styleUrls: ['./course.component.css', './course.image.b64.css']
 })
 export class CourseComponent implements OnInit {
-
   courseUrlSlug: string;
   courseDetailsPayload: CourseProductDetailsPayload;
   constructor(
