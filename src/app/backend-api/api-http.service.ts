@@ -32,7 +32,8 @@ export class ApiHttpService {
   public post<T>(url: string, data: any, options?: any) {
     if (!options){
       options = this.constants.defaultOptions;
-      console.log('options', options);
+    } else{
+      options.headers.set('Access-Control-Allow-Origin', '*');
     }
     return this.http.post<T>(url, data, options);
     // tslint:disable-next-line:typedef
