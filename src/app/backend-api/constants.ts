@@ -5,7 +5,7 @@ import {environment} from '../../environments/environment';
 @Injectable()
 export class Constants {
   baseUrl = environment.baseUrl;
-  public readonly API_ENDPOINT: string = `${ this.baseUrl }/api`;
+  public readonly API_ENDPOINT: string = `${ this.baseUrl }`;
   public readonly defaultOptions: any = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

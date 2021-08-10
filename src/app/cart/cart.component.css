@@ -6,7 +6,8 @@
   width: 100%;
   font-size: 65px;
   font-weight: bold;
-  color: #f8f9fa;
+  color: white;
+  background-color: #2e2e2e;
 
   display: flex;
   justify-content: center;

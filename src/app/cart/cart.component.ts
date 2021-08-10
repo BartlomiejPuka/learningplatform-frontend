@@ -9,7 +9,7 @@ import {CartEndpointsApiService} from '../backend-api/cart-endpoints-api/cart-en
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css', './cart.image.b64.css']
+  styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
 

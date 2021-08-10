@@ -12,7 +12,7 @@ import {CourseProductsEndpointsApiService} from '../backend-api/course-products-
 @Component({
   selector: 'app-course',
   templateUrl: './course.component.html',
-  styleUrls: ['./course.component.css', './course.image.b64.css']
+  styleUrls: ['./course.component.css']
 })
 export class CourseComponent implements OnInit {
   courseUrlSlug: string;
