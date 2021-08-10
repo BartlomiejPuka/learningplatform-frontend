@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import {HttpHeaders} from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class Constants {
-  public readonly API_ENDPOINT: string = 'http://localhost:8080/api';
+  baseUrl = environment.baseUrl;
+  public readonly API_ENDPOINT: string = `${ this.baseUrl }/api`;
   public readonly defaultOptions: any = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
